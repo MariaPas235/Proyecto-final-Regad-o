@@ -1,0 +1,15 @@
+
+’
+java:S1120"wMake this line start after 2 spaces instead of 4 in order to indent the code consistently. (Indentation level is at 2.)(¾ÿ±·ûÿÿÿÿ
+
+java:S1120
+"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(€á‘
+x	java:S118"^Rename this abstract class name to match the regular expression '^Abstract[A-Z][a-zA-Z0-9]*$'.(½×Õ¸úÿÿÿÿ
+\
+java:S1106"AMove this left curly brace to the beginning of next line of code.(½×Õ¸úÿÿÿÿ
+W
+java:S1106	"AMove this left curly brace to the beginning of next line of code.(ºÕä™
+4
+java:S1451"&Add or update the header of this file.
+G
+java:S2039",Explicitly declare the visibility for "app".(¾ÿ±·ûÿÿÿÿ

@@ -1,17 +1,26 @@
 package github.mariapas235.model.entity;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Garage {
     private int garageNumber;
     private String name;
     private String location;
+    private ArrayList<Pieces> PiecesGarage;
 
     public Garage(int garageNumber, String name, String location){
         this.garageNumber = garageNumber;
         this.name = name;
         this.location = location;
 
+    }
+
+    public Garage(int garageNumber, String name, String location, ArrayList<Pieces> piecesGarage) {
+        this.garageNumber = garageNumber;
+        this.name = name;
+        this.location = location;
+        PiecesGarage = piecesGarage;
     }
 
     public Garage(){
@@ -42,6 +51,14 @@ public class Garage {
         this.location = location;
     }
 
+    public ArrayList<Pieces> getPiecesGarage() {
+        return PiecesGarage;
+    }
+
+    public void setPiecesGarage(ArrayList<Pieces> piecesGarage) {
+        PiecesGarage = piecesGarage;
+    }
+
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -59,6 +76,7 @@ public class Garage {
                 "garageNumber=" + garageNumber +
                 ", name='" + name + '\'' +
                 ", location='" + location + '\'' +
+                ", PiecesGarage=" + PiecesGarage +
                 '}';
     }
 }

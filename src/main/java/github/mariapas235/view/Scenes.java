@@ -8,7 +8,8 @@ public enum Scenes {
     REGISTRERWORKER("view/registrerWorker.fxml"),
     LOGINWORKER("view/loginWorker.fxml"),
     REGISTRERBOSS("view/registrerBoss.fxml"),
-    LOGINBOSS("view/logInBoss.fxml");
+    LOGINBOSS("view/logInBoss.fxml"),
+    PINCIPALPAGEBOSS ("view/principalPageBoss.fxml");
 
     private String url;
     Scenes(String url){

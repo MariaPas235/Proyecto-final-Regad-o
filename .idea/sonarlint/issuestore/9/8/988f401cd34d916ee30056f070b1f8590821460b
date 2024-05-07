@@ -1,0 +1,42 @@
+
+º
+java:S1120"wMake this line start after 2 spaces instead of 4 in order to indent the code consistently. (Indentation level is at 2.)(äõ8Æì’÷ô1J$c1f6378e-4892-458b-b7fc-1c0b8079e73c
+º
+java:S1120"wMake this line start after 4 spaces instead of 7 in order to indent the code consistently. (Indentation level is at 2.)(æØëÛ8Æì’÷ô1J$e9df5afa-ebc0-4485-ac8e-ec8f39fc630c
+¿
+java:S1120)"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(•‰™Ãıÿÿÿÿ8Æì’÷ô1J$080824db-682f-4b19-a5db-69a30b5f1975
+v	java:S109"UAssign this magic number 1920 to a well-named constant, and use the constant instead.(İ°½şÿÿÿÿ8° •÷ô1
+œ	java:S109"UAssign this magic number 1080 to a well-named constant, and use the constant instead.(İ°½şÿÿÿÿ8Èì’÷ô1J$813c519f-4c4a-4fed-bf90-420b1010e159
+”
+java:S1104"QMake scene a static final constant or non-public and provide accessors if needed.(äõ8Êì’÷ô1J$468c6778-f2be-4d0c-9aa1-9a68454194b5
+”
+java:S1104"QMake stage a static final constant or non-public and provide accessors if needed.(œ‰à8Ëì’÷ô1J$cb0cecdf-4795-45fb-b372-1dfa66dbfdb1
+ 
+java:S1104"]Make currentController a static final constant or non-public and provide accessors if needed.(½«İ8Ìì’÷ô1J$bd3fe8f2-006b-471a-8ab1-9e470f5894fa
+n
+java:S1444"+Make this "public static scene" field final(äõ8Ìì’÷ô1J$98598528-406f-4e3a-b9ea-f21df31ebb07
+n
+java:S1444"+Make this "public static stage" field final(œ‰à8Ìì’÷ô1J$1afacf81-a41a-4600-8696-cef37efdabd2
+z
+java:S1444"7Make this "public static currentController" field final(½«İ8Ìì’÷ô1J$8f350453-ae8f-4274-84e1-db4c80005523
+‰
+java:S1106"AMove this left curly brace to the beginning of next line of code.(Ïª³‚øÿÿÿÿ8Ïì’÷ô1J$5dcd64b8-8c6d-4569-90ff-08b48f89c2de
+„
+java:S1106"AMove this left curly brace to the beginning of next line of code.(ÚÉÔò8Ïì’÷ô1J$69fcdc76-af86-4c9d-a18c-25ea4a31c36b
+‰
+java:S1106#"AMove this left curly brace to the beginning of next line of code.(ïåøğıÿÿÿÿ8Ïì’÷ô1J$6f03450f-cd31-4a67-8432-6a3fcdd6508f
+„
+java:S1106("AMove this left curly brace to the beginning of next line of code.(Çµí‘8Ïì’÷ô1J$21a363e3-0441-4439-b93a-88daead4387e
+a
+java:S1451"&Add or update the header of this file.8àì’÷ô1J$450818af-59ab-4f28-8090-877b4bf02410
+r
+java:S6212"/Declare this local variable with "var" instead.(æØëÛ8ıì’÷ô1J$0082228c-4e24-4f37-a6c4-ba4505396859
+~
+java:S2696"6Make the enclosing method "static" or remove this set.(İ°½şÿÿÿÿ8€í’÷ô1J$8edfce56-c405-44e7-ace8-b875c1914610
+~
+java:S2696"6Make the enclosing method "static" or remove this set.(ßÆÎ­şÿÿÿÿ8í’÷ô1J$0bde67d0-f06c-4ef7-9a44-e1ba1079db35
+~	java:S125$"<This block of commented-out lines of code should be removed.(ÃˆÀ‚8…í’÷ô1J$5ed04a6f-5e29-4273-b4cd-c0b7cf439257
+{
+java:S1128"3Remove this unused import 'javafx.fxml.FXMLLoader'.(À‡ô³úÿÿÿÿ8ˆí’÷ô1J$aa7a0199-4df5-4620-8e03-e85b87f9f492
+s
+java:S1128"0Remove this unused import 'javafx.scene.Parent'.(²ä¡È8ˆí’÷ô1J$0c2bb546-66fd-44bd-99b2-c40c1e8172aa

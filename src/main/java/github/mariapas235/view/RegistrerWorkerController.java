@@ -6,8 +6,6 @@ import github.mariapas235.model.entity.Person;
 import github.mariapas235.model.entity.Position;
 import github.mariapas235.model.entity.Workers;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -35,25 +33,48 @@ public class RegistrerWorkerController extends Controller implements Initializab
     @FXML
     public Workers CollectDataWorker() throws IOException {
         Object selectedPositionString = comboBoxPosition.getSelectionModel().getSelectedItem();
-        Position selectedPosition = Position.valueOf(selectedPositionString.toString().toUpperCase()) ;
+        Position selectedPosition = Position.valueOf(selectedPositionString.toString().toUpperCase());
         String email = TextFieldEmail.getText();
-        if (Person.validarCorreo(email)){
-            email = TextFieldEmail.getText();
-        }else {
-            email="puto";
-        }
-        Workers w = new Workers(TextFieldName.getText(),email,TextFieldPassword.getText(), selectedPosition);
+        String password = TextFieldPassword.getText();
+        String name = TextFieldName.getText();
+        Workers w = new Workers(name, email, password, selectedPosition);
         return w;
     }
+
     @FXML
     public void InsertRegistrerWorker() throws IOException {
         Workers w = CollectDataWorker();
         WorkersDAO wDAO = new WorkersDAO();
-        wDAO.insert(w);
-        App.currentController.changeScene(Scenes.LOGINWORKER, null);
+
+        if (w.getName() == null || w.getName().isEmpty()) {
+            AppController.alertEmptyName();
+        } else if (w.getEmail() == null || w.getEmail().isEmpty()) {
+            AppController.alertEmptyEmail();
+        } else if (w.getPassword() == null || w.getPassword().isEmpty()) {
+            AppController.alertEmptyPassword();
+        } else if (w.getPosition()==null) {
+            AppController.alertEmptyPosition();
+    } else if (Person.validarCorreo(w.getEmail())) {
+            if (Person.validarContrasena(w.getPassword())) {
+                if (wDAO.findByEmailAll(w.getEmail())==null){
+                    wDAO.insert(w);
+                    App.currentController.changeScene(Scenes.LOGINWORKER, null);
+                }else {
+                    AppController.EmailRepeat();
+                }
+
+            } else {
+                AppController.alertErrorPassword();
+            }
+
+
+        } else {
+            AppController.alertErrorEmail();
+        }
+
 
     }
-   
+
     @Override
     public void onOpen(Object input) throws IOException {
 
@@ -66,7 +87,7 @@ public class RegistrerWorkerController extends Controller implements Initializab
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        comboBoxPosition.setItems(FXCollections.observableArrayList("Soldador","Peon","Electricista","Transportista"));
+        comboBoxPosition.setItems(FXCollections.observableArrayList("Soldador", "Peon", "Electricista", "Transportista"));
 
     }
 }

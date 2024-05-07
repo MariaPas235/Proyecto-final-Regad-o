@@ -59,7 +59,7 @@
             <Font size="40.0" />
          </font>
       </Text>
-      <Text fill="#929292" layoutX="346.0" layoutY="686.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- 8 caracteres como mínimo&#10;- Debe contener 1 número&#10;- Debe contener 1 Mayúscula&#10;- Debe contener 1 Minúscula&#10;- Debe contener 1 caracter especial de los siguientes:   @$!.#_()%*?&amp; &lt;-):   " wrappingWidth="507.5810546875">
+      <Text fill="#929292" layoutX="346.0" layoutY="686.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- 8 caracteres exactos&#10;- Debe contener 1 número&#10;- Debe contener 1 Mayúscula&#10;- Debe contener 1 Minúscula&#10;- Debe contener 1 caracter especial de los siguientes:   @$!.#_()%*?&amp; &lt;-):   " wrappingWidth="507.5810546875">
          <font>
             <Font size="21.0" />
          </font>

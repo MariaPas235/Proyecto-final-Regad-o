@@ -2,6 +2,7 @@ package github.mariapas235.model.dao;
 
 import github.mariapas235.model.connection.ConnectionMariaDB;
 import github.mariapas235.model.entity.Boss;
+import github.mariapas235.model.entity.Position;
 import github.mariapas235.model.entity.Workers;
 import javafx.concurrent.Worker;
 
@@ -16,6 +17,8 @@ public class WorkersDAO implements DAO<Workers,String,Integer>{
     private final static String INSERT="INSERT INTO worker (name,email,password,position) VALUES (?,?,?,?)";
     private final static String UPDATE= "UPDATE worker SET position=? WHERE email=?";
     private final static String FINDALL = "SELECT w.IDWorker, w.name FROM worker AS w";
+    private final static String FINDBYEMAIL = "SELECT w.email, w.password FROM worker AS w WHERE w.email=?";
+    private final static String FINDBYEMAILALL= "SELECT w.name, w.email, w.password, w.position FROM worker AS w WHERE w.email=?";
     private final static String FINDBYID = "SELECT w.IDWorker, w.name FROM worker AS w WHERE w.IDWorker=?";
     private final static String DELETE = "DELETE FROM worker AS w WHERE w.IDWorker=?";
 
@@ -77,6 +80,46 @@ public class WorkersDAO implements DAO<Workers,String,Integer>{
                 if (res.next()){
                     result.setIDWorker(res.getInt("IDWorker"));
                     result.setName(res.getString("name"));
+                }
+                res.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
+    }
+    public Workers verify(String key)     {
+        Workers result = new Workers();
+        if (key!= null) {
+
+            try (PreparedStatement pst = ConnectionMariaDB.getConnection().prepareStatement(FINDBYEMAIL)) {
+                pst.setString(1,key);
+                ResultSet res = pst.executeQuery();
+                if (res.next()){
+                    result.setEmail(res.getString("email"));
+                    result.setPassword(res.getString("password"));
+                }
+                res.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
+    }
+    public Workers findByEmailAll(String key) {
+        Workers result = new Workers();
+        if (key!=null) {
+
+            try (PreparedStatement pst = ConnectionMariaDB.getConnection().prepareStatement(FINDBYEMAILALL)) {
+                pst.setString(1,key);
+                ResultSet res = pst.executeQuery();
+                if (res.next()){
+                    result.setName(res.getString("name"));
+                    result.setEmail(res.getString("email"));
+                    result.setPassword(res.getString("password"));
+                    String position = res.getString("position");
+                    Position p = Position.valueOf(position.toUpperCase());
+                    result.setPosition((p));
                 }
                 res.close();
             } catch (SQLException e) {

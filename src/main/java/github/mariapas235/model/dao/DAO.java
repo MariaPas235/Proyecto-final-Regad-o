@@ -13,7 +13,6 @@ public interface DAO<T,K,I> extends Closeable{
         T findById (I key);
 
 
-
         List<T> findAll();
 
     }

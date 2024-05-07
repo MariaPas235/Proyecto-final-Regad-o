@@ -8,6 +8,7 @@ public class Person {
     private String name;
     private String email;
     private String password;
+    private Integer ID;
 
     public Person(String name, String email, String password) {
         this.name = name;
@@ -71,21 +72,17 @@ public class Person {
         Matcher mailMatcher = mailPattern.matcher(mail);
         if (mailMatcher.matches()) {
             System.out.println("El mail esta bien escrito");
+            result=true;
         } else {
             System.out.println("El mail está mal escrito");
         }
-       // if (!rp.getByEmail(mail)) {
-        //    System.out.println("El mail es correcto ");
-        //    result = true;
-        //} else {
-        //    System.out.println("El mail es incorrecto, escribelo de nuevo");
-        //}
+
         return result;
     }
 
     public static boolean validarContrasena(String contrasena) {
         boolean result = false;
-        Pattern contrasenaPattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!.#_()%*?&])[A-Za-z\\d@$!.#_()%*?&]{8,}$");
+        Pattern contrasenaPattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!.#_()%*?&])[A-Za-z\\d@$!.#_()%*?&]{8}$");
         Matcher contrasenaMatcher = contrasenaPattern.matcher(contrasena);
         if (contrasenaMatcher.matches()) {
             System.out.println("La contraseña es correcta");

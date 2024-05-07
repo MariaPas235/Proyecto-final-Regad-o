@@ -4,6 +4,7 @@ import github.mariapas235.App;
 import github.mariapas235.model.dao.BossDAO;
 import github.mariapas235.model.dao.WorkersDAO;
 import github.mariapas235.model.entity.Boss;
+import github.mariapas235.model.entity.Person;
 import github.mariapas235.model.entity.Position;
 import github.mariapas235.model.entity.Workers;
 import javafx.fxml.FXML;
@@ -29,18 +30,38 @@ public class RegistrerBossController extends Controller implements Initializable
 
     @FXML
     public Boss CollectDataBoss() {
-        Boss b = new Boss(TextFieldNameBoss.getText(),TextFieldEmailBoss.getText(),TextFieldPasswordBoss.getText());
+
+        String email = TextFieldEmailBoss.getText();
+        Boss b = new Boss(TextFieldNameBoss.getText(), email, TextFieldPasswordBoss.getText());
         return b;
     }
 
     @FXML
     public void InsertRegistrerBoss() throws IOException {
+
         Boss b = CollectDataBoss();
         BossDAO bDAO = new BossDAO();
-        bDAO.insert(b);
-        App.currentController.changeScene(Scenes.LOGINBOSS, null);
 
+        if (b.getName() == null || b.getName().isEmpty()) {
+            AppController.alertEmptyName();
+        } else if (b.getEmail() == null || b.getEmail().isEmpty()) {
+            AppController.alertEmptyEmail();
+        } else if (b.getPassword() == null || b.getPassword().isEmpty()) {
+            AppController.alertEmptyPassword();
+
+        } else if (Person.validarCorreo(b.getEmail())) {
+            if (Person.validarContrasena(b.getPassword())) {
+                bDAO.insert(b);
+                App.currentController.changeScene(Scenes.LOGINBOSS, null);
+            } else {
+                AppController.alertErrorPassword();
+            }
+
+        } else {
+            AppController.alertErrorEmail();
+        }
     }
+
     @Override
     public void onOpen(Object input) throws IOException {
 

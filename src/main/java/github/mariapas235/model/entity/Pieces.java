@@ -9,16 +9,27 @@ public class Pieces {
     private Category category;
     private float prize;
     private int quantity;
-    private List<Garage> garages;
+    private Garage garage;
+    private Boss boss;
 
 
-    public Pieces(int IDPieces, String name, Category category, float prize, int quantity, List<Garage> garages) {
+    public Pieces(int IDPieces, String name, Category category, float prize, int quantity, Garage garage) {
         this.IDPieces = IDPieces;
         this.name = name;
         this.category = category;
         this.prize = prize;
         this.quantity = quantity;
-        this.garages = garages;
+        this.garage = garage;
+    }
+
+    public Pieces(int IDPieces, String name, Category category, float prize, int quantity, Garage garage, Boss boss) {
+        this.IDPieces = IDPieces;
+        this.name = name;
+        this.category = category;
+        this.prize = prize;
+        this.quantity = quantity;
+        this.garage = garage;
+        this.boss = boss;
     }
 
     public Pieces(){}
@@ -63,12 +74,20 @@ public class Pieces {
         this.quantity = quantity;
     }
 
-    public List<Garage> getGarages() {
-        return garages;
+    public Garage getGarage() {
+        return garage;
     }
 
-    public void setGarages(List<Garage> garages) {
-        this.garages = garages;
+    public void setGarage(Garage garage) {
+        this.garage = garage;
+    }
+
+    public Boss getBoss() {
+        return boss;
+    }
+
+    public void setBoss(Boss boss) {
+        this.boss = boss;
     }
 
     @Override
@@ -92,7 +111,8 @@ public class Pieces {
                 ", category=" + category +
                 ", prize=" + prize +
                 ", quantity=" + quantity +
-                ", garages=" + garages +
+                ", garage=" + garage +
+                ", boss=" + boss +
                 '}';
     }
 }
