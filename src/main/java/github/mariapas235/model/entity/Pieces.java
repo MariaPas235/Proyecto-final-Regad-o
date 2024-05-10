@@ -32,6 +32,15 @@ public class Pieces {
         this.boss = boss;
     }
 
+    public Pieces(String name, Category category, float prize, int quantity, Garage garage, Boss boss) {
+        this.name = name;
+        this.category = category;
+        this.prize = prize;
+        this.quantity = quantity;
+        this.garage = garage;
+        this.boss = boss;
+    }
+
     public Pieces(){}
 
     public int getIDPieces() {

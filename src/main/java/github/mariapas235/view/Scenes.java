@@ -9,7 +9,10 @@ public enum Scenes {
     LOGINWORKER("view/loginWorker.fxml"),
     REGISTRERBOSS("view/registrerBoss.fxml"),
     LOGINBOSS("view/logInBoss.fxml"),
-    PINCIPALPAGEBOSS ("view/principalPageBoss.fxml");
+    PINCIPALPAGEBOSS ("view/principalPageBoss2.fxml"),
+    BUTTONSINSERTTOOLSGARAGES("view/buttonsInsertToolsGarages.fxml"),
+    INSERTGARAGEFORM("view/InsertGarageForm.fxml"),
+    INSERTTOOLFORM("view/insertToolForm.fxml");
 
     private String url;
     Scenes(String url){

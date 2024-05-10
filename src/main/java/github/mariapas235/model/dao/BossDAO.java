@@ -17,6 +17,7 @@ public class BossDAO implements DAO<Boss,String, Integer>{
     private final static String UPDATE="UPDATE boss SET wallet=? WHERE email=?)";
     private final static String FINDALL = "SELECT b.IDBoss, b.name FROM boss AS b";
     private final static String FINDBYEMAIL = "SELECT b.email, b.password FROM boss AS b WHERE b.email=?";
+    private final static String FINDIDBYEMAIL = "SELECT b.IDBOSS FROM boss AS b WHERE b.email=?";
     private final static String FINDBYEMAILALL= "SELECT b.name, b.email, b.password,b.IDBoss, b.wallet FROM boss AS b WHERE b.email=?";
     private final static String FINDBYID = "SELECT b.IDBoss, b.name FROM boss AS b WHERE b.IDBoss=?";
     private final static String DELETE = "DELETE FROM boos AS b WHERE b.IDBoss=?";
@@ -121,6 +122,27 @@ public class BossDAO implements DAO<Boss,String, Integer>{
         }
         return result;
     }
+
+    public Boss getID(String key){
+        Boss result = new Boss();
+        if (key!= null) {
+
+            try (PreparedStatement pst = ConnectionMariaDB.getConnection().prepareStatement(FINDIDBYEMAIL)) {
+                pst.setString(1,key);
+                ResultSet res = pst.executeQuery();
+                if (res.next()){
+                    result.setIDBoss(res.getInt("IDBoss"));
+                }
+                res.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+
+
     public Boss findByEmailAll(String key) {
         Boss result = new Boss();
         if (key!=null) {

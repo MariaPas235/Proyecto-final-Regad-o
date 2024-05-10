@@ -21,7 +21,7 @@
             <Font size="39.0" />
          </font>
       </Text>
-      <TextField fx:id="TextFieldEmail" layoutX="752.0" layoutY="457.0" prefHeight="52.0" prefWidth="415.0">
+      <TextField fx:id="TextFieldEmail" layoutX="752.0" layoutY="457.0" prefHeight="52.0" prefWidth="415.0" text="azul@gmail.com">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
@@ -34,7 +34,7 @@
             <Font size="39.0" />
          </font>
       </Text>
-      <TextField fx:id="TextFieldPassword" layoutX="752.0" layoutY="646.0" prefHeight="52.0" prefWidth="415.0">
+      <TextField fx:id="TextFieldPassword" layoutX="752.0" layoutY="646.0" prefHeight="52.0" prefWidth="415.0" text="Ma2003r@">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>

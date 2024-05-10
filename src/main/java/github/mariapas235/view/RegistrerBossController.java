@@ -3,10 +3,7 @@ package github.mariapas235.view;
 import github.mariapas235.App;
 import github.mariapas235.model.dao.BossDAO;
 import github.mariapas235.model.dao.WorkersDAO;
-import github.mariapas235.model.entity.Boss;
-import github.mariapas235.model.entity.Person;
-import github.mariapas235.model.entity.Position;
-import github.mariapas235.model.entity.Workers;
+import github.mariapas235.model.entity.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -52,6 +49,9 @@ public class RegistrerBossController extends Controller implements Initializable
         } else if (Person.validarCorreo(b.getEmail())) {
             if (Person.validarContrasena(b.getPassword())) {
                 bDAO.insert(b);
+                b.setIDBoss( bDAO.findByEmailAll(b.getEmail()).getIDBoss());
+                Session.getInstance().logIn(b);
+                System.out.println(Session.getInstance().getUserLogged());
                 App.currentController.changeScene(Scenes.LOGINBOSS, null);
             } else {
                 AppController.alertErrorPassword();

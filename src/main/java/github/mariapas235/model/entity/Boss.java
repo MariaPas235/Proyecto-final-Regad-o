@@ -57,4 +57,7 @@ public class Boss extends Person {
                 ", wallet=" + wallet +
                 '}';
     }
+
+    
+
 }

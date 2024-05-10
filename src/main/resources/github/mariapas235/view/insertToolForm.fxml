@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.mariapas235.view.InsertToolFormController">
+   <children>
+      <Text layoutX="292.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:">
+         <font>
+            <Font size="31.0" />
+         </font></Text>
+      <TextField fx:id="textFieldName" layoutX="209.0" layoutY="140.0">
+         <font>
+            <Font size="23.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></TextField>
+      <Text layoutX="877.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoría:">
+         <font>
+            <Font size="31.0" />
+         </font></Text>
+      <ComboBox fx:id="comboBoxCategory" layoutX="785.0" layoutY="140.0" prefHeight="49.0" prefWidth="321.0" />
+      <Text layoutX="224.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio por unidad:">
+         <font>
+            <Font size="31.0" />
+         </font></Text>
+      <TextField fx:id="textFieldPrize" layoutX="207.0" layoutY="348.0" promptText="€">
+         <font>
+            <Font size="23.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></TextField>
+      <Text layoutX="877.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cantidad:">
+         <font>
+            <Font size="31.0" />
+         </font></Text>
+      <TextField fx:id="textFieldQuantity" layoutX="804.0" layoutY="338.0">
+         <font>
+            <Font size="23.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></TextField>
+      <Text layoutX="254.0" layoutY="532.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nº de garage:">
+         <font>
+            <Font size="31.0" />
+         </font></Text>
+      <TextField fx:id="textFieldGarageNumber" layoutX="206.0" layoutY="583.0">
+         <font>
+            <Font size="23.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></TextField>
+      <ImageView fx:id="returnToButtons" fitHeight="79.0" fitWidth="130.0" layoutX="26.0" layoutY="373.0" onMouseClicked="#ReturnToButtons" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@flecha.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Button fx:id="buttonInsertTool" layoutX="852.0" layoutY="543.0" mnemonicParsing="false" prefHeight="96.0" prefWidth="139.0" style="-fx-background-color: #fea500;" text="Añadir">
+         <font>
+            <Font size="26.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>
