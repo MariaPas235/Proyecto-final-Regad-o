@@ -4,13 +4,14 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.mariapas235.view.ShowToolsWorker">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.mariapas235.view.ShowToolsWorkerController">
    <children>
-      <TableView layoutX="266.0" layoutY="126.0" prefHeight="621.0" prefWidth="949.0">
+      <TableView fx:id="showTools" layoutX="266.0" layoutY="126.0" prefHeight="621.0" prefWidth="949.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Nombre" />
-          <TableColumn prefWidth="75.0" />
+          <TableColumn fx:id="nameTool" prefWidth="273.7778015136719" text="Nombre" />
+          <TableColumn fx:id="categoryTool" minWidth="0.0" prefWidth="320.88885498046875" text="Categoría" />
+            <TableColumn fx:id="quantityTool" prefWidth="152.88885498046875" text="Cantidad " />
+            <TableColumn fx:id="GarageTool" prefWidth="202.22222900390625" text="Garaje " />
         </columns>
       </TableView>
    </children>

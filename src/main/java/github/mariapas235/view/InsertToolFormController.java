@@ -34,17 +34,18 @@ public class InsertToolFormController extends Controller implements Initializabl
     @FXML
     ComboBox<String> comboBoxCategory;
     PrincipalPageBoss2Controller parent;
-    public Pieces CollectDataTool(){
+
+    public Pieces CollectDataTool() {
         String selectedCategoryString = comboBoxCategory.getSelectionModel().getSelectedItem();
         Category selectedCategory = Category.valueOf(selectedCategoryString.toString().toUpperCase());
         String name = textFieldName.getText();
         String prize = textFieldPrize.getText();
         String quantity = textFieldQuantity.getText();
         String GarageNumber = textFieldGarageNumber.getText();
-
         int quantityInt = Integer.parseInt(quantity);
         float prizeFloat = Float.parseFloat(prize);
         int garageNumberInt = Integer.parseInt(GarageNumber);
+
 
         //buscar en la base de datos un garage que exista con ese GarageNumber, si es true, crea la pieza y la guarda en el array de ese garage
         GarageDAO g = new GarageDAO();
@@ -54,42 +55,48 @@ public class InsertToolFormController extends Controller implements Initializabl
 
         BossDAO b = new BossDAO();
 
-        Boss boss =  b.findByEmailAll(email);
-        Pieces p =null;
+        Boss boss = b.findByEmailAll(email);
+        Pieces p = null;
 
-        if (garageDataBase.getGarageNumber()== garageNumberInt){
-             p = new Pieces(name,selectedCategory,prizeFloat,quantityInt,garageDataBase,boss);
+
+        if (garageDataBase.getGarageNumber() == garageNumberInt) {
+            //busco piezaq por nombre y me la traigo, comparo esa pieza con la nueva y si la categoria y el precio son iguales, suma cantidad4
+
+            PiecesDAO pDAO = new PiecesDAO();
+            Pieces pieceDatabase = pDAO.findByName(name);
+            if (pieceDatabase == null) {
+                p = new Pieces(name, selectedCategory, prizeFloat, quantityInt, garageDataBase, boss);
+                pDAO.insert(p);
+                AppController.alertEmptyEmail();
+            } else if (pieceDatabase.getName().equals(name) && pieceDatabase.getCategory().equals(selectedCategory) && pieceDatabase.getPrize() == prizeFloat) {
+                pieceDatabase.setQuantity(pieceDatabase.getQuantity() + quantityInt);
+                pDAO.update(pieceDatabase);
+                p = pieceDatabase;
+            }
+
+            }
+            return p;
+        }
+
+
+        @FXML
+        public void ReturnToButtons () {
+            parent.changeScene(Scenes.BUTTONSINSERTTOOLSGARAGES);
+        }
+
+
+        @Override
+        public void onOpen (Object input) throws IOException {
+            this.parent = (PrincipalPageBoss2Controller) input;
+        }
+
+        @Override
+        public void onClose (Object output){
 
         }
-        return p;
+
+        @Override
+        public void initialize (URL url, ResourceBundle resourceBundle){
+            comboBoxCategory.setItems(FXCollections.observableArrayList("HERRAMIENTAS_ELECTRICAS", "HERRAMIENTAS_MANUALES", "FERRETERIA"));
+        }
     }
-
-    @FXML
-    public void insertToolButton(){
-
-        PiecesDAO pDAO = new PiecesDAO();
-        pDAO.insert(CollectDataTool());
-        AppController.alertEmptyEmail();
-    }
-    @FXML
-    public void ReturnToButtons(){
-        parent.changeScene(Scenes.BUTTONSINSERTTOOLSGARAGES);
-    }
-
-
-
-    @Override
-    public void onOpen(Object input) throws IOException {
-        this.parent = (PrincipalPageBoss2Controller) input;
-    }
-
-    @Override
-    public void onClose(Object output) {
-
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        comboBoxCategory.setItems(FXCollections.observableArrayList("HERRAMIENTAS_ELECTRICAS", "HERRAMIENTAS_MANUALES", "FERRETERIA"));
-    }
-}

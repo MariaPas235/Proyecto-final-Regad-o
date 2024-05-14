@@ -6,10 +6,10 @@ import java.util.Objects;
 public class ForHire {
     private Pieces pieces;
     private Workers workers;
-    private LocalDate take;
-    private LocalDate back;
+    private String take;
+    private String back;
 
-    public ForHire(Pieces pieces, Workers workers, LocalDate take, LocalDate back) {
+    public ForHire(Pieces pieces, Workers workers, String take, String back) {
         this.pieces = pieces;
         this.workers = workers;
         this.take = take;
@@ -35,19 +35,19 @@ public class ForHire {
         this.workers = workers;
     }
 
-    public LocalDate getTake() {
+    public String getTake() {
         return take;
     }
 
-    public void setTake(LocalDate take) {
+    public void setTake(String take) {
         this.take = take;
     }
 
-    public LocalDate getBack() {
+    public String  getBack() {
         return back;
     }
 
-    public void setBack(LocalDate back) {
+    public void setBack(String back) {
         this.back = back;
     }
 

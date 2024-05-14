@@ -11,7 +11,7 @@ public class Pieces {
     private int quantity;
     private Garage garage;
     private Boss boss;
-
+    private ForHire forHire;
 
     public Pieces(int IDPieces, String name, Category category, float prize, int quantity, Garage garage) {
         this.IDPieces = IDPieces;
@@ -39,6 +39,17 @@ public class Pieces {
         this.quantity = quantity;
         this.garage = garage;
         this.boss = boss;
+    }
+
+    public Pieces(int IDPieces, String name, Category category, float prize, int quantity, Garage garage, Boss boss, ForHire forHire) {
+        this.IDPieces = IDPieces;
+        this.name = name;
+        this.category = category;
+        this.prize = prize;
+        this.quantity = quantity;
+        this.garage = garage;
+        this.boss = boss;
+        this.forHire = forHire;
     }
 
     public Pieces(){}
@@ -99,6 +110,14 @@ public class Pieces {
         this.boss = boss;
     }
 
+    public ForHire getForHire() {
+        return forHire;
+    }
+
+    public void setForHire(ForHire forHire) {
+        this.forHire = forHire;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -122,6 +141,7 @@ public class Pieces {
                 ", quantity=" + quantity +
                 ", garage=" + garage +
                 ", boss=" + boss +
+                ", forHire=" + forHire +
                 '}';
     }
 }

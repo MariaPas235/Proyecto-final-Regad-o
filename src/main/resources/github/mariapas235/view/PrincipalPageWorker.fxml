@@ -10,7 +10,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.mariapas235.view.PrincipalPageWorkerController">
    <children>
       <AnchorPane prefHeight="236.0" prefWidth="1920.0" style="-fx-background-color: #071635;">
@@ -38,12 +37,12 @@
                <children>
                   <AnchorPane prefHeight="853.0" prefWidth="495.0">
                      <children>
-                        <Rectangle fx:id="showTools" arcHeight="5.0" arcWidth="5.0" fill="#fea500" height="287.0" layoutX="-16.0" stroke="BLACK" strokeType="INSIDE" width="510.0">
+                        <Rectangle fx:id="showTools" arcHeight="5.0" arcWidth="5.0" fill="#fea500" height="287.0" layoutX="-16.0" onMouseClicked="#changeToShowTools" stroke="BLACK" strokeType="INSIDE" width="510.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Rectangle>
-                        <Rectangle fx:id="showForHire" arcHeight="5.0" arcWidth="5.0" fill="#fea500" height="281.0" layoutX="-2.0" layoutY="287.0" stroke="BLACK" strokeType="INSIDE" width="496.0">
+                        <Rectangle fx:id="showForHire" arcHeight="5.0" arcWidth="5.0" fill="#fea500" height="281.0" layoutX="-2.0" layoutY="287.0" onMouseClicked="#changeToShowForHIre" stroke="BLACK" strokeType="INSIDE" width="496.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>

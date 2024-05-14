@@ -16,7 +16,7 @@ public class PiecesDAO implements DAO<Pieces,String,Integer>{
     private final static String INSERT="INSERT INTO pieces (name,category,prize,quantity,garageNumber,IDBoss) VALUES (?,?,?,?,?,?)";
     private final static String UPDATE= "UPDATE pieces SET quantity=? WHERE name=?";
     private final static String FINDALL = "SELECT p.name, p.category,p.prize,p.quantity,p.garageNumber FROM pieces AS p";
-    private final static String FINDBYID = "SELECT p.IDPieces, p.name FROM pieces AS p WHERE p.IDPieces=?";
+    private final static String FINDBYNAME = "SELECT p.IDPieces,  p.name,p.category,p.prize,p.quantity,p.garageNumber FROM pieces AS p WHERE p.name=?";
     private final static String DELETE = "DELETE FROM pieces AS p WHERE p.IDPieces=?";
 
     @Override
@@ -44,9 +44,10 @@ public class PiecesDAO implements DAO<Pieces,String,Integer>{
     @Override
     public Pieces update(Pieces entity) {
         Pieces result = entity;
-        if(entity !=null || entity.getIDPieces()>0){
+        if(entity !=null){
             try(PreparedStatement pst = ConnectionMariaDB.getConnection().prepareStatement(UPDATE)) {
                 pst.setInt(1,entity.getQuantity());
+                pst.setString(2, entity.getName());
                 pst.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -72,16 +73,32 @@ public class PiecesDAO implements DAO<Pieces,String,Integer>{
 
     @Override
     public Pieces findById(Integer key) {
-        Pieces result = new Pieces();
-        if (key>0) {
+        return null;
+    }
 
-            try (PreparedStatement pst = ConnectionMariaDB.getConnection().prepareStatement(FINDBYID)) {
-                pst.setInt(1,key);
+    public Pieces findByName(String key) {
+        Pieces result=null;
+        if (key!=null) {
+
+            try (PreparedStatement pst = ConnectionMariaDB.getConnection().prepareStatement(FINDBYNAME)) {
+                GarageDAO gDAO = new GarageDAO();
+                pst.setString(1,key);
                 ResultSet res = pst.executeQuery();
                 if (res.next()){
+
+                    result = new Pieces();
                     result.setIDPieces(res.getInt("IDPieces"));
                     result.setName(res.getString("name"));
+                    String categoryS= res.getString("category");
+                    Category category = Category.valueOf(categoryS.toUpperCase());
+                    result.setCategory(category);
+                    result.setPrize(res.getFloat("prize"));
+                    result.setQuantity(res.getInt("quantity"));
+                    result.setGarage(gDAO.findById(res.getInt("GarageNumber")));
+
+
                 }
+
                 res.close();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -120,4 +137,6 @@ public class PiecesDAO implements DAO<Pieces,String,Integer>{
     public void close() throws IOException {
 
     }
+
+
 }

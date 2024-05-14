@@ -31,6 +31,7 @@ public class PrincipalPageWorkerController extends Controller implements Initial
     Rectangle showForHire;
 
 
+
     @FXML
     public void logOut() throws IOException {
         Session.getInstance().logOut();
@@ -79,7 +80,7 @@ public class PrincipalPageWorkerController extends Controller implements Initial
 
     @FXML
     public void changeToShowTools() throws IOException {
-       // changeScene(Scenes.SHOWTOOLSWORKER);
+        changeScene(Scenes.SHOWTOOLWORKER);
     }
 
     @FXML
