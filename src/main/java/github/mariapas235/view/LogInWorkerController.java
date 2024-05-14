@@ -1,5 +1,6 @@
 package github.mariapas235.view;
 
+import github.mariapas235.App;
 import github.mariapas235.model.dao.WorkersDAO;
 import github.mariapas235.model.entity.Session;
 import github.mariapas235.model.entity.Workers;
@@ -32,16 +33,17 @@ public class LogInWorkerController extends Controller implements Initializable {
         return w;
     }
 
-    public void LogInWorker(){
+    public void LogInWorker() throws IOException {
         Workers w = collectDataWorkerLogIn();
         WorkersDAO wDAO = new WorkersDAO();
+        w=wDAO.findByEmailAll(w.getEmail());
 
         if ( verifyCredentials(w)){
             w= wDAO.findByEmailAll(w.getEmail());
             Session.getInstance().logIn(w);
             System.out.println(w);
             System.out.println(Session.getInstance().getUserLogged().toString());
-            //cambio escena
+            App.currentController.changeScene(Scenes.PRINCIPALPAGEWORKER,null);
         }else {
             AppController.notLogIn();
         }

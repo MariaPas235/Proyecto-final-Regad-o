@@ -14,7 +14,9 @@ public enum Scenes {
     INSERTGARAGEFORM("view/InsertGarageForm.fxml"),
     INSERTTOOLFORM("view/insertToolForm.fxml"),
     SHOWTOOLSBOSS("view/showToolsBoss.fxml"),
-    SHOWGARAGEBOSS("view/showGarageBoss.fxml");
+    SHOWGARAGEBOSS("view/showGarageBoss.fxml"),
+    PRINCIPALPAGEWORKER("view/PrincipalPageWorker.fxml"),
+    SHOWTOOLWORKER("view/showToolsWorker.fxml");
 
     private String url;
     Scenes(String url){

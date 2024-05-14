@@ -18,7 +18,7 @@ public class WorkersDAO implements DAO<Workers,String,Integer>{
     private final static String UPDATE= "UPDATE worker SET position=? WHERE email=?";
     private final static String FINDALL = "SELECT w.IDWorker, w.name FROM worker AS w";
     private final static String FINDBYEMAIL = "SELECT w.email, w.password FROM worker AS w WHERE w.email=?";
-    private final static String FINDBYEMAILALL= "SELECT w.name, w.email, w.password, w.position FROM worker AS w WHERE w.email=?";
+    private final static String FINDBYEMAILALL= "SELECT w.IDWorker, w.name, w.email, w.password, w.position FROM worker AS w WHERE w.email=?";
     private final static String FINDBYID = "SELECT w.IDWorker, w.name FROM worker AS w WHERE w.IDWorker=?";
     private final static String DELETE = "DELETE FROM worker AS w WHERE w.IDWorker=?";
 
@@ -114,6 +114,7 @@ public class WorkersDAO implements DAO<Workers,String,Integer>{
                 pst.setString(1,key);
                 ResultSet res = pst.executeQuery();
                 if (res.next()){
+                    result.setIDWorker(res.getInt("IDWorker"));
                     result.setName(res.getString("name"));
                     result.setEmail(res.getString("email"));
                     result.setPassword(res.getString("password"));

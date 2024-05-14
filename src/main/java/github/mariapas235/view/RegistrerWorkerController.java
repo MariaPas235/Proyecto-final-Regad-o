@@ -56,7 +56,7 @@ public class RegistrerWorkerController extends Controller implements Initializab
             AppController.alertEmptyPosition();
     } else if (Person.validarCorreo(w.getEmail())) {
             if (Person.validarContrasena(w.getPassword())) {
-                if (wDAO.findByEmailAll(w.getEmail())==null){
+                if (wDAO.findByEmailAll(w.getEmail())!=null){
                     wDAO.insert(w);
                     App.currentController.changeScene(Scenes.LOGINWORKER, null);
                 }else {
