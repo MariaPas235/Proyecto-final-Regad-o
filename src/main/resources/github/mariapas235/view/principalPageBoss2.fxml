@@ -37,11 +37,11 @@
                <children>
                   <AnchorPane prefHeight="853.0" prefWidth="495.0">
                      <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fea500" height="287.0" layoutX="-16.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="510.0">
+                        <Rectangle fx:id="showTools" arcHeight="5.0" arcWidth="5.0" fill="#fea500" height="287.0" layoutX="-16.0" layoutY="1.0" onMouseClicked="#changeToShowTools" stroke="BLACK" strokeType="INSIDE" width="510.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></Rectangle>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fea500" height="281.0" layoutX="-2.0" layoutY="289.0" stroke="BLACK" strokeType="INSIDE" width="496.0">
+                        <Rectangle fx:id="showGarages" arcHeight="5.0" arcWidth="5.0" fill="#fea500" height="281.0" layoutX="-2.0" layoutY="289.0" onMouseClicked="#changeToShowGarage" stroke="BLACK" strokeType="INSIDE" width="496.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></Rectangle>
@@ -49,7 +49,7 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></Rectangle>
-                        <Text fill="#071635" layoutX="179.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Herramientas" wrappingWidth="259.857421875">
+                        <Text fill="#071635" layoutX="179.0" layoutY="107.0" onMouseClicked="#changeToShowTools" strokeType="OUTSIDE" strokeWidth="0.0" text="Herramientas" wrappingWidth="259.857421875">
                            <font>
                               <Font size="40.0" />
                            </font>
@@ -57,7 +57,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Text>
-                        <Text fill="#071635" layoutX="210.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Garages">
+                        <Text fill="#071635" layoutX="210.0" layoutY="382.0" onMouseClicked="#changeToShowGarage" strokeType="OUTSIDE" strokeWidth="0.0" text="Garages">
                            <font>
                               <Font size="42.0" />
                            </font>
@@ -81,7 +81,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
-                        <ImageView fitHeight="87.0" fitWidth="103.0" layoutX="242.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="87.0" fitWidth="103.0" layoutX="242.0" layoutY="426.0" onMouseClicked="#changeToShowGarage" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@garage.png" />
                            </image>
@@ -89,7 +89,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
-                        <ImageView fitHeight="87.0" fitWidth="89.0" layoutX="242.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="87.0" fitWidth="89.0" layoutX="242.0" layoutY="145.0" onMouseClicked="#changeToShowTools" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@tool.png" />
                            </image>

@@ -50,6 +50,7 @@ public class InsertGarageFormController extends Controller implements Initializa
 
     @FXML
     public void returnButtons(){
+
         parent.changeScene(Scenes.BUTTONSINSERTTOOLSGARAGES);
     }
 

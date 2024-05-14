@@ -15,8 +15,8 @@ public class GarageDAO implements DAO<Garage,String,Integer> {
 
     private final static String INSERT="INSERT INTO garage (garageNumber,name,location) VALUES (?,?,?)";
     private final static String UPDATE= "UPDATE garage SET name=? WHERE garageNumber=?";
-    private final static String FINDALL = "SELECT g.garageNumber, g.name FROM garage AS g";
-    private final static String FINDBYID = "SELECT g.garageNumber, g.name FROM garage AS g WHERE g.garageNumber=?";
+    private final static String FINDALL = "SELECT g.garageNumber, g.name, g.location FROM garage AS g";
+    private final static String FINDBYID = "SELECT g.garageNumber, g.name, g.location FROM garage AS g WHERE g.garageNumber=?";
     private final static String DELETE = "DELETE FROM garage AS g WHERE g.garageNumber=?";
 
     @Override
@@ -76,6 +76,7 @@ public class GarageDAO implements DAO<Garage,String,Integer> {
                 if (res.next()){
                     result.setGarageNumber(res.getInt("GarageNumber"));
                     result.setName(res.getString("name"));
+                    result.setLocation(res.getString("location"));
                 }
                 res.close();
             } catch (SQLException e) {
@@ -95,6 +96,7 @@ public class GarageDAO implements DAO<Garage,String,Integer> {
                 Garage g = new Garage();
                 g.setGarageNumber(res.getInt("GarageNumber"));
                 g.setName(res.getString("name"));
+                g.setLocation(res.getString("location"));
                 result.add(g);
             }
             res.close();

@@ -1,7 +1,10 @@
 package github.mariapas235.view;
 
-import github.mariapas235.model.entity.Category;
-import github.mariapas235.model.entity.Position;
+import github.mariapas235.App;
+import github.mariapas235.model.dao.BossDAO;
+import github.mariapas235.model.dao.GarageDAO;
+import github.mariapas235.model.dao.PiecesDAO;
+import github.mariapas235.model.entity.*;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,15 +34,42 @@ public class InsertToolFormController extends Controller implements Initializabl
     @FXML
     ComboBox<String> comboBoxCategory;
     PrincipalPageBoss2Controller parent;
-    public void CollectDataTool(){
-        Object selectedCategoryString = comboBoxCategory.getSelectionModel().getSelectedItem();
+    public Pieces CollectDataTool(){
+        String selectedCategoryString = comboBoxCategory.getSelectionModel().getSelectedItem();
         Category selectedCategory = Category.valueOf(selectedCategoryString.toString().toUpperCase());
         String name = textFieldName.getText();
         String prize = textFieldPrize.getText();
         String quantity = textFieldQuantity.getText();
         String GarageNumber = textFieldGarageNumber.getText();
 
+        int quantityInt = Integer.parseInt(quantity);
+        float prizeFloat = Float.parseFloat(prize);
+        int garageNumberInt = Integer.parseInt(GarageNumber);
 
+        //buscar en la base de datos un garage que exista con ese GarageNumber, si es true, crea la pieza y la guarda en el array de ese garage
+        GarageDAO g = new GarageDAO();
+        Garage garageDataBase = g.findById(garageNumberInt);
+
+        String email = Session.getInstance().getUserLogged().getEmail();
+
+        BossDAO b = new BossDAO();
+
+        Boss boss =  b.findByEmailAll(email);
+        Pieces p =null;
+
+        if (garageDataBase.getGarageNumber()== garageNumberInt){
+             p = new Pieces(name,selectedCategory,prizeFloat,quantityInt,garageDataBase,boss);
+
+        }
+        return p;
+    }
+
+    @FXML
+    public void insertToolButton(){
+
+        PiecesDAO pDAO = new PiecesDAO();
+        pDAO.insert(CollectDataTool());
+        AppController.alertEmptyEmail();
     }
     @FXML
     public void ReturnToButtons(){
@@ -60,6 +90,6 @@ public class InsertToolFormController extends Controller implements Initializabl
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        comboBoxCategory.setItems(FXCollections.observableArrayList("Herramientas eléctricas", "Herramientas manuales", "Ferretería"));
+        comboBoxCategory.setItems(FXCollections.observableArrayList("HERRAMIENTAS_ELECTRICAS", "HERRAMIENTAS_MANUALES", "FERRETERIA"));
     }
 }

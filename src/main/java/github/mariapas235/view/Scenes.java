@@ -12,7 +12,9 @@ public enum Scenes {
     PINCIPALPAGEBOSS ("view/principalPageBoss2.fxml"),
     BUTTONSINSERTTOOLSGARAGES("view/buttonsInsertToolsGarages.fxml"),
     INSERTGARAGEFORM("view/InsertGarageForm.fxml"),
-    INSERTTOOLFORM("view/insertToolForm.fxml");
+    INSERTTOOLFORM("view/insertToolForm.fxml"),
+    SHOWTOOLSBOSS("view/showToolsBoss.fxml"),
+    SHOWGARAGEBOSS("view/showGarageBoss.fxml");
 
     private String url;
     Scenes(String url){

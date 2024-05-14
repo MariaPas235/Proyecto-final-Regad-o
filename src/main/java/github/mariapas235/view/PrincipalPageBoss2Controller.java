@@ -24,6 +24,13 @@ public class PrincipalPageBoss2Controller extends Controller implements Initiali
     Text textID;
     @FXML
     Rectangle logOut;
+    @FXML
+    Rectangle showTools;
+    @FXML
+    Rectangle showGarages;
+
+
+
 
     @FXML
     public void logOut() throws IOException {
@@ -45,7 +52,7 @@ public class PrincipalPageBoss2Controller extends Controller implements Initiali
         BossDAO b = new BossDAO();
 
         Boss boss =  b.findByEmailAll(email);
-        ;
+
         textID.setText("ID: "+boss.getIDBoss());
         System.out.println(boss.toString());
     }
@@ -74,6 +81,15 @@ public class PrincipalPageBoss2Controller extends Controller implements Initiali
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @FXML
+    public void changeToShowTools() throws IOException {
+        changeScene(Scenes.SHOWTOOLSBOSS);
+    }
+    @FXML
+    public void changeToShowGarage() throws IOException {
+        changeScene(Scenes.SHOWGARAGEBOSS);
     }
 
     @Override

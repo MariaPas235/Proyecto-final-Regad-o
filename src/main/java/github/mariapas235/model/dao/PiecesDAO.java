@@ -1,6 +1,7 @@
 package github.mariapas235.model.dao;
 
 import github.mariapas235.model.connection.ConnectionMariaDB;
+import github.mariapas235.model.entity.Category;
 import github.mariapas235.model.entity.Garage;
 import github.mariapas235.model.entity.Pieces;
 
@@ -14,7 +15,7 @@ import java.util.List;
 public class PiecesDAO implements DAO<Pieces,String,Integer>{
     private final static String INSERT="INSERT INTO pieces (name,category,prize,quantity,garageNumber,IDBoss) VALUES (?,?,?,?,?,?)";
     private final static String UPDATE= "UPDATE pieces SET quantity=? WHERE name=?";
-    private final static String FINDALL = "SELECT p.IDPieces, p.name FROM pieces AS p";
+    private final static String FINDALL = "SELECT p.name, p.category,p.prize,p.quantity,p.garageNumber FROM pieces AS p";
     private final static String FINDBYID = "SELECT p.IDPieces, p.name FROM pieces AS p WHERE p.IDPieces=?";
     private final static String DELETE = "DELETE FROM pieces AS p WHERE p.IDPieces=?";
 
@@ -22,12 +23,12 @@ public class PiecesDAO implements DAO<Pieces,String,Integer>{
     public Pieces insert(Pieces entity) {
 
         Pieces result = entity;
-        if(entity !=null || entity.getIDPieces()>0){
+        if(entity !=null ){
             Pieces p = findById(entity.getIDPieces());
             try(PreparedStatement pst = ConnectionMariaDB.getConnection().prepareStatement(INSERT)) {
                 pst.setString(1, entity.getName());
-                String category = entity.getCategory().toString();
-                pst.setString(2, category.toUpperCase());
+                String category = entity.getCategory().toString().toUpperCase();
+                pst.setString(2, category);
                 pst.setFloat(3, entity.getPrize());
                 pst.setInt(4,entity.getQuantity());
                 pst.setInt(5,entity.getGarage().getGarageNumber());
@@ -94,11 +95,17 @@ public class PiecesDAO implements DAO<Pieces,String,Integer>{
         List<Pieces> result = new ArrayList<>();
 
         try (PreparedStatement pst = ConnectionMariaDB.getConnection().prepareStatement(FINDALL)) {
+            GarageDAO GDAo= new GarageDAO();
             ResultSet res = pst.executeQuery();
             while (res.next()){
                 Pieces p = new Pieces();
-                p.setIDPieces(res.getInt("IDPieces"));
                 p.setName(res.getString("name"));
+                String categoryS= res.getString("category");
+                Category category = Category.valueOf(categoryS.toUpperCase());
+                p.setCategory(category);
+                p.setGarage(GDAo.findById(res.getInt("GarageNumber")));
+                p.setPrize(res.getFloat("prize"));
+                p.setQuantity(res.getInt("quantity"));
                 result.add(p);
             }
             res.close();
