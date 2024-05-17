@@ -83,6 +83,7 @@ public class ShowToolsBossController extends Controller implements Initializable
                     pDAO.delete(axu);
                     parent.changeScene(Scenes.SHOWTOOLSBOSS);
 
+
                     System.out.println(axu);
 
                     System.out.println("Pieza seleccionada: " + pieceSeleccionada.getName());

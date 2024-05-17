@@ -16,7 +16,8 @@ public enum Scenes {
     SHOWTOOLSBOSS("view/showToolsBoss.fxml"),
     SHOWGARAGEBOSS("view/showGarageBoss.fxml"),
     PRINCIPALPAGEWORKER("view/PrincipalPageWorker.fxml"),
-    SHOWTOOLWORKER("view/showToolsWorker.fxml");
+    SHOWTOOLWORKER("view/showToolsWorker.fxml"),
+    SHOWFORHIREWORKER("view/showForHireWorker.fxml");
 
     private String url;
     Scenes(String url){

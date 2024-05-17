@@ -86,7 +86,7 @@ public class PrincipalPageWorkerController extends Controller implements Initial
 
     @FXML
     public void changeToShowForHIre() throws IOException {
-       // changeScene(Scenes.SHOWFORHIRE);
+       changeScene(Scenes.SHOWFORHIREWORKER);
     }
 
 

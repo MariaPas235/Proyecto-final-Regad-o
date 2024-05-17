@@ -80,12 +80,14 @@ public class ShowToolsWorkerController extends Controller implements Initializab
                     WorkersDAO w = new WorkersDAO();
                     Workers worker = w.findByEmailAll(email);
 
+                    System.out.println("Find by ID worker");
+
 
                     System.out.println( fhDAO.findByIDWorker(worker));
 
-                    System.out.println(axu);
 
-                    System.out.println("Pieza seleccionada: " + pieceSeleccionada.getName());
+                    System.out.println("Pieza axu:");
+                    System.out.println(axu);
 
                     System.out.println("------------------------------------------------------------");
                     System.out.println(fhDAO.findAll());

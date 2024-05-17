@@ -60,7 +60,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Text>
-                        <Text fill="#071635" layoutX="210.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Préstamos">
+                        <Text fill="#071635" layoutX="210.0" layoutY="382.0" onMouseClicked="#changeToShowForHIre" strokeType="OUTSIDE" strokeWidth="0.0" text="Préstamos">
                            <font>
                               <Font size="40.0" />
                            </font>
@@ -92,7 +92,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
-                        <ImageView fitHeight="87.0" fitWidth="103.0" layoutX="242.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="87.0" fitWidth="103.0" layoutX="242.0" layoutY="426.0" onMouseClicked="#changeToShowForHIre" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@prestamo.png" />
                            </image>
