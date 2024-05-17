@@ -42,6 +42,7 @@ public class PrincipalPageWorkerController extends Controller implements Initial
 
     @FXML
     public void writeName(){
+
         textName.setText("Hola: "+ Session.getInstance().getUserLogged().getName());
     }
     @FXML

@@ -1,5 +1,7 @@
 package github.mariapas235.model.entity;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -89,6 +91,27 @@ public class Person {
             result = true;
         } else {
             System.out.println("La contraseña es incorrecta, intentelo de nuevo");
+        }
+        return result;
+    }
+
+    public static String HashearContraseña(String contra){
+        String result = null;
+        try {
+
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+
+            byte[] hashedBytes = digest.digest(contra.getBytes());
+
+            StringBuilder stringBuilder = new StringBuilder();
+            for (byte b : hashedBytes) {
+                stringBuilder.append(String.format("%02x", b));
+            }
+            String hashedPassword = stringBuilder.toString();
+
+            result = hashedPassword;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
         }
         return result;
     }

@@ -11,7 +11,7 @@ public class Pieces {
     private int quantity;
     private Garage garage;
     private Boss boss;
-    private ForHire forHire;
+    private List<ForHire> forHireList;
 
     public Pieces(int IDPieces, String name, Category category, float prize, int quantity, Garage garage) {
         this.IDPieces = IDPieces;
@@ -41,7 +41,7 @@ public class Pieces {
         this.boss = boss;
     }
 
-    public Pieces(int IDPieces, String name, Category category, float prize, int quantity, Garage garage, Boss boss, ForHire forHire) {
+    public Pieces(int IDPieces, String name, Category category, float prize, int quantity, Garage garage, Boss boss, List<ForHire> forHireList) {
         this.IDPieces = IDPieces;
         this.name = name;
         this.category = category;
@@ -49,7 +49,7 @@ public class Pieces {
         this.quantity = quantity;
         this.garage = garage;
         this.boss = boss;
-        this.forHire = forHire;
+        this.forHireList = forHireList;
     }
 
     public Pieces(){}
@@ -110,12 +110,12 @@ public class Pieces {
         this.boss = boss;
     }
 
-    public ForHire getForHire() {
-        return forHire;
+    public List<ForHire> getForHireList() {
+        return forHireList;
     }
 
-    public void setForHire(ForHire forHire) {
-        this.forHire = forHire;
+    public void setForHireList(List<ForHire> forHireList) {
+        this.forHireList = forHireList;
     }
 
     @Override
@@ -141,7 +141,7 @@ public class Pieces {
                 ", quantity=" + quantity +
                 ", garage=" + garage +
                 ", boss=" + boss +
-                ", forHire=" + forHire +
+                ", forHireList=" + forHireList +
                 '}';
     }
 }

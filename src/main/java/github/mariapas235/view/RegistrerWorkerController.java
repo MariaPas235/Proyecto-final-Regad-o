@@ -2,6 +2,7 @@ package github.mariapas235.view;
 
 import github.mariapas235.App;
 import github.mariapas235.model.dao.WorkersDAO;
+import github.mariapas235.model.entity.Boss;
 import github.mariapas235.model.entity.Person;
 import github.mariapas235.model.entity.Position;
 import github.mariapas235.model.entity.Workers;
@@ -32,12 +33,22 @@ public class RegistrerWorkerController extends Controller implements Initializab
 
     @FXML
     public Workers CollectDataWorker() throws IOException {
+        Workers w= null;
         Object selectedPositionString = comboBoxPosition.getSelectionModel().getSelectedItem();
         Position selectedPosition = Position.valueOf(selectedPositionString.toString().toUpperCase());
         String email = TextFieldEmail.getText();
-        String password = TextFieldPassword.getText();
         String name = TextFieldName.getText();
-        Workers w = new Workers(name, email, password, selectedPosition);
+        String password = TextFieldPassword.getText();
+
+        if (!Person.validarContrasena(password)) {
+            AppController.alertErrorPassword();
+
+        }else {
+            String passHas = Person.HashearContraseña(password);
+            w = new Workers(name, email, passHas, selectedPosition);
+        }
+
+
         return w;
     }
 
@@ -54,19 +65,14 @@ public class RegistrerWorkerController extends Controller implements Initializab
             AppController.alertEmptyPassword();
         } else if (w.getPosition()==null) {
             AppController.alertEmptyPosition();
-    } else if (Person.validarCorreo(w.getEmail())) {
-            if (Person.validarContrasena(w.getPassword())) {
+        } else if (Person.validarCorreo(w.getEmail())) {
                 if (wDAO.findByEmailAll(w.getEmail())!=null){
+                    Person.HashearContraseña(w.getPassword());
                     wDAO.insert(w);
                     App.currentController.changeScene(Scenes.LOGINWORKER, null);
                 }else {
                     AppController.EmailRepeat();
                 }
-
-            } else {
-                AppController.alertErrorPassword();
-            }
-
 
         } else {
             AppController.alertErrorEmail();

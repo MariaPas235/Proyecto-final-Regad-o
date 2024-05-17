@@ -4,6 +4,7 @@ import github.mariapas235.App;
 import github.mariapas235.model.dao.BossDAO;
 import github.mariapas235.model.dao.WorkersDAO;
 import github.mariapas235.model.entity.Boss;
+import github.mariapas235.model.entity.Person;
 import github.mariapas235.model.entity.Session;
 import github.mariapas235.model.entity.Workers;
 import javafx.fxml.FXML;
@@ -30,8 +31,12 @@ public class LogInBossController extends Controller implements Initializable {
         Boss b = new Boss();
         String email = TextFieldEmail.getText();
         String password = TextFieldPassword.getText();
+
+
+        String PassHash = Person.HashearContraseña(password);
+
         b.setEmail(email);
-        b.setPassword(password);
+        b.setPassword(PassHash);
         return b;
     }
 
@@ -41,6 +46,7 @@ public class LogInBossController extends Controller implements Initializable {
 
         if ( verifyCredentials(b)){
             b= bDAO.findByEmailAll(b.getEmail());
+
             Session.getInstance().logIn(b);
             System.out.println( );
             System.out.println(Session.getInstance().getUserLogged().toString());

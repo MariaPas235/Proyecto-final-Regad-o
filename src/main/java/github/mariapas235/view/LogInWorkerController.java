@@ -2,6 +2,7 @@ package github.mariapas235.view;
 
 import github.mariapas235.App;
 import github.mariapas235.model.dao.WorkersDAO;
+import github.mariapas235.model.entity.Person;
 import github.mariapas235.model.entity.Session;
 import github.mariapas235.model.entity.Workers;
 import javafx.fxml.FXML;
@@ -29,7 +30,8 @@ public class LogInWorkerController extends Controller implements Initializable {
         String email = TextFieldEmail.getText();
         String password = TextFieldPassword.getText();
         w.setEmail(email);
-        w.setPassword(password);
+        String passHash = Person.HashearContraseña(password);
+        w.setPassword(passHash);
         return w;
     }
 

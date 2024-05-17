@@ -1,7 +1,11 @@
 package github.mariapas235.view;
 
 import github.mariapas235.model.dao.PiecesDAO;
+import github.mariapas235.model.dao.WorkersDAO;
+import github.mariapas235.model.entity.ForHire;
 import github.mariapas235.model.entity.Pieces;
+import github.mariapas235.model.entity.Session;
+import github.mariapas235.model.entity.Workers;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -69,10 +73,22 @@ public class ShowToolsWorkerController extends Controller implements Initializab
                     Pieces pieces = (Pieces) showTools.getSelectionModel().getSelectedItem();
                     PiecesDAO pDAO = new PiecesDAO();
                     Pieces axu=pDAO.findByName(pieces.getName());
+                    PiecesDAO.ForHireDAO fhDAO = new PiecesDAO.ForHireDAO();
+                    ForHire fh = new ForHire();
+                    fhDAO.insert(axu,fh);
+                    String email = Session.getInstance().getUserLogged().getEmail();
+                    WorkersDAO w = new WorkersDAO();
+                    Workers worker = w.findByEmailAll(email);
+
+
+                    System.out.println( fhDAO.findByIDWorker(worker));
 
                     System.out.println(axu);
 
                     System.out.println("Pieza seleccionada: " + pieceSeleccionada.getName());
+
+                    System.out.println("------------------------------------------------------------");
+                    System.out.println(fhDAO.findAll());
                 }
             }
         });

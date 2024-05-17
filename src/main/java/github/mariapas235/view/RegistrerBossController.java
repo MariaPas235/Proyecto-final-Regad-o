@@ -6,6 +6,7 @@ import github.mariapas235.model.dao.WorkersDAO;
 import github.mariapas235.model.entity.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
@@ -27,10 +28,20 @@ public class RegistrerBossController extends Controller implements Initializable
 
     @FXML
     public Boss CollectDataBoss() {
-
         String email = TextFieldEmailBoss.getText();
-        Boss b = new Boss(TextFieldNameBoss.getText(), email, TextFieldPasswordBoss.getText());
+        String password = TextFieldPasswordBoss.getText();
+        Boss b = null;
+        if (!Person.validarContrasena(password)) {
+            AppController.alertErrorPassword();
+
+
+        }else {
+            String passHas = Person.HashearContraseña(password);
+            b = new Boss(TextFieldNameBoss.getText(), email, passHas);
+        }
+
         return b;
+
     }
 
     @FXML
@@ -45,18 +56,12 @@ public class RegistrerBossController extends Controller implements Initializable
             AppController.alertEmptyEmail();
         } else if (b.getPassword() == null || b.getPassword().isEmpty()) {
             AppController.alertEmptyPassword();
-
         } else if (Person.validarCorreo(b.getEmail())) {
-            if (Person.validarContrasena(b.getPassword())) {
                 bDAO.insert(b);
                 b.setIDBoss( bDAO.findByEmailAll(b.getEmail()).getIDBoss());
                 Session.getInstance().logIn(b);
                 System.out.println(Session.getInstance().getUserLogged());
                 App.currentController.changeScene(Scenes.LOGINBOSS, null);
-            } else {
-                AppController.alertErrorPassword();
-            }
-
         } else {
             AppController.alertErrorEmail();
         }

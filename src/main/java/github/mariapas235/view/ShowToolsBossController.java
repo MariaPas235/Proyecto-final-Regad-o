@@ -72,5 +72,23 @@ public class ShowToolsBossController extends Controller implements Initializable
         PrizeTool.setCellValueFactory(piece ->
                 new SimpleFloatProperty(piece.getValue().getPrize()).asObject());
 
+
+        showTools.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                Pieces pieceSeleccionada = (Pieces) showTools.getSelectionModel().getSelectedItem();
+                if (pieceSeleccionada != null) {
+                    Pieces pieces = (Pieces) showTools.getSelectionModel().getSelectedItem();
+                    PiecesDAO pDAO = new PiecesDAO();
+                    Pieces axu=pDAO.findByName(pieces.getName());
+                    pDAO.delete(axu);
+                    parent.changeScene(Scenes.SHOWTOOLSBOSS);
+
+                    System.out.println(axu);
+
+                    System.out.println("Pieza seleccionada: " + pieceSeleccionada.getName());
+                }
+            }
+        });
+
     }
 }
