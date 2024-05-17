@@ -260,6 +260,10 @@ public class PiecesDAO implements DAO<Pieces,String,Integer>{
             return result;
         }
 
+        public static ForHireDAO build(){
+            return new ForHireDAO();
+        }
+
     }
 
 

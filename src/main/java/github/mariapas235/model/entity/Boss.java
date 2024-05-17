@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Boss extends Person {
     private int IDBoss;
     private float wallet;
-    private List<ForHire> forHireList;
+
 
     public Boss(String name, String email, String password, int IDBoss, float wallet) {
         super(name, email, password);
@@ -19,12 +19,7 @@ public class Boss extends Person {
 
     }
 
-    public Boss(String name, String email, String password, int IDBoss, float wallet, List<ForHire> forHireList) {
-        super(name, email, password);
-        this.IDBoss = IDBoss;
-        this.wallet = wallet;
-        this.forHireList = forHireList;
-    }
+
 
     public Boss() {
     }
@@ -45,13 +40,6 @@ public class Boss extends Person {
         this.wallet = wallet;
     }
 
-    public List<ForHire> getForHireList() {
-        return forHireList;
-    }
-
-    public void setForHireList(List<ForHire> forHireList) {
-        this.forHireList = forHireList;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -73,7 +61,6 @@ public class Boss extends Person {
         return "Boss{" +
                 "IDBoss=" + IDBoss +
                 ", wallet=" + wallet +
-                ", forHireList=" + forHireList +
                 '}';
     }
 }

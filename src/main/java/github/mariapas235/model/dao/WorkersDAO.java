@@ -1,9 +1,7 @@
 package github.mariapas235.model.dao;
 
 import github.mariapas235.model.connection.ConnectionMariaDB;
-import github.mariapas235.model.entity.Boss;
-import github.mariapas235.model.entity.Position;
-import github.mariapas235.model.entity.Workers;
+import github.mariapas235.model.entity.*;
 import javafx.concurrent.Worker;
 
 import java.io.IOException;
@@ -11,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class WorkersDAO implements DAO<Workers,String,Integer>{
@@ -21,6 +20,7 @@ public class WorkersDAO implements DAO<Workers,String,Integer>{
     private final static String FINDBYEMAILALL= "SELECT w.IDWorker, w.name, w.email, w.password, w.position FROM worker AS w WHERE w.email=?";
     private final static String FINDBYID = "SELECT w.IDWorker, w.name FROM worker AS w WHERE w.IDWorker=?";
     private final static String DELETE = "DELETE FROM worker AS w WHERE w.IDWorker=?";
+  //  private final static String
 
     @Override
     public Workers insert(Workers entity) {
@@ -80,6 +80,10 @@ public class WorkersDAO implements DAO<Workers,String,Integer>{
                 if (res.next()){
                     result.setIDWorker(res.getInt("IDWorker"));
                     result.setName(res.getString("name"));
+
+                    //Lazy
+                    //PiecesDAO.ForHireDAO fhDAO = new PiecesDAO.ForHireDAO();
+                    //result.setForHireList(fhDAO.findByIDWorker(result));
                 }
                 res.close();
             } catch (SQLException e) {
@@ -154,4 +158,28 @@ public class WorkersDAO implements DAO<Workers,String,Integer>{
     public void close() throws IOException {
 
     }
+}
+class WorkersLazy extends Workers{
+
+
+    public List<ForHire> getForHire() {
+        Workers w = (Workers) Session.getInstance().getUserLogged();
+
+        if (super.getForHireList() == null) {
+            try {
+                // Obtener la lista de 'ForHire' desde la base de datos usando el objeto Workers
+                List<ForHire> forHireList = (List<ForHire>) PiecesDAO.ForHireDAO.build().findByIDWorker(w);
+                setForHireList(forHireList);
+            } catch (Exception e) {
+                // Manejar la excepción (log, rethrow, etc.)
+                e.printStackTrace();
+                return Collections.emptyList(); // O manejar según la lógica de la aplicación
+            }
+        }
+
+        return super.getForHireList();
+    }
+
+
+
 }
