@@ -12,6 +12,10 @@ import java.sql.SQLException;
         private static ConnectionMariaDB _instance;
         private static Connection conn;
 
+        /**
+         * Private constructor to prevent external instantiation.
+         * Reads the connection properties from the XML file and tries to establish a database connection.
+         */
         private ConnectionMariaDB(){
             ConnectionProperties properties = (ConnectionProperties) XMLManager.readXML(new ConnectionProperties(),FILE);
 
@@ -22,7 +26,11 @@ import java.sql.SQLException;
                 conn=null;
             }
         }
-
+        /**
+         * Public method to get the database connection.
+         * If the instance is null, create a new one and return the database connection.
+         * @return the database connection
+         */
         public static Connection getConnection(){
             if(_instance==null){
                 _instance = new ConnectionMariaDB();
@@ -30,6 +38,10 @@ import java.sql.SQLException;
             return conn;
         }
 
+        /**
+         * Public method to close the database connection.
+         * If the connection is not null, attempt to close it.
+         */
         public static void closeConnection(){
             if(conn!=null){
                 try {

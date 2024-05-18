@@ -20,10 +20,24 @@ public class AppController extends Controller implements Initializable {
     @FXML
     private BorderPane borderPane;
     private Controller centerController;
+
+    /**
+     * Method called when the connection is opened.
+     * Changes the scene to the welcome screen.
+     * @param input input data (not used in this method)
+     * @throws IOException if an I/O error occurs while changing the scene
+     */
     @Override
     public void onOpen(Object input) throws IOException {
         changeScene(Scenes.WELCOME,null);
     }
+
+    /**
+     * Changes the application scene.
+     * @param scene the scene to change to
+     * @param data data to pass to the new scene (can be null)
+     * @throws IOException if an I/O error occurs while changing the scene
+     */
     public void changeScene(Scenes scene,Object data) throws IOException{
         View view = loadFXML(scene);
         borderPane.setCenter(view.scene);
@@ -31,80 +45,59 @@ public class AppController extends Controller implements Initializable {
         this.centerController.onOpen(data);
     }
 
-    public static void alertErrorEmail(){
+
+    /**
+     * Displays an error alert dialog.
+     * @param text text to display in the alert dialog
+     */
+    public static void alertError(String text){
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setContentText("Email incorrecto, por favor introduzcalo bien. ");
+        alert.setContentText(text);
         alert.setWidth(300);
         alert.setHeight(300);
         alert.showAndWait();
 
     }
-    public static void alertErrorPassword(){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setContentText("La contraseña no cumple con los requisitos citados abajo, por favor cree una nueva");
-        alert.setWidth(300);
-        alert.setHeight(300);
-        alert.showAndWait();
-    }
-    public static void alertEmptyName(){
+
+    /**
+     * Displays a warning alert dialog.
+     * @param text text to display in the alert dialog
+     */
+    public static void alertWarning(String text){
         Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setContentText("El campo 'Nombre' se encuentra vacío, porfavor rellenelo");
-        alert.setWidth(300);
-        alert.setHeight(300);
-        alert.showAndWait();
-    }
-
-    public static void alertEmptyEmail(){
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setContentText("El campo 'Email' se encuentra vacío, porfavor rellenelo");
-        alert.setWidth(300);
-        alert.setHeight(300);
-        alert.showAndWait();
-    }
-    public static void alertEmptyPassword(){
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setContentText("El campo 'Contraseña' se encuentra vacío, porfavor rellenelo");
-        alert.setWidth(300);
-        alert.setHeight(300);
-        alert.showAndWait();
-    }
-
-    public static void alertEmptyPosition(){
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setContentText("El campo 'Position' se encuentra vacío, porfavor seleccione una opción");
-        alert.setWidth(300);
-        alert.setHeight(300);
-        alert.showAndWait();
-    }
-    public static void notLogIn(){
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setContentText("mira perdona que es que nooo es asiin ");
-        alert.setWidth(300);
-        alert.setHeight(300);
-        alert.showAndWait();
-    }
-
-    public static void EmailRepeat(){
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setContentText("El correo introducido ya se encuentra registrado en nuestra base de datos, porfavor use otro ");
+        alert.setContentText(text);
         alert.setWidth(300);
         alert.setHeight(300);
         alert.showAndWait();
     }
 
 
-
-
-
+    /**
+     * Method called when the connection is closed.
+     * @param output output data (not used in this method)
+     */
     @Override
     public void onClose(Object output) {
 
     }
 
+
+    /**
+     * Initializes the controller.
+     * @param url the location relative to the root of the FXML document being loaded
+     * @param resourceBundle the resources that may be needed to initialize the controller (not used in this method)
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+
+    /**
+     * Loads an FXML file and returns the associated view.
+     * @param scene the scene to load
+     * @return the view associated with the scene
+     * @throws IOException if an I/O error occurs while loading the FXML file
+     */
     public static View loadFXML(Scenes scene )throws IOException{
         String url = scene.getUrl();
         System.out.println(url);

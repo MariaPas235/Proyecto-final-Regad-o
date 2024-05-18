@@ -7,6 +7,13 @@ import javax.xml.bind.Unmarshaller;
 import java.io.File;
 
 public class XMLManager {
+
+    /**
+     * Writes an object to an XML file.
+     * @param c the object to write
+     * @param filename the name of the XML file
+     * @return true if the operation is successful, false otherwise
+     */
     public static <T> boolean writeXML(T c,String filename){
         boolean result=false;
         JAXBContext context;
@@ -23,6 +30,12 @@ public class XMLManager {
         return result;
     }
 
+    /**
+     * Reads an object from an XML file.
+     * @param c an instance of the object to read, used for type inference
+     * @param filename the name of the XML file
+     * @return the object read from the XML file
+     */
     public static<T> T readXML(T c,String filename){
         T result = c;
         JAXBContext context;

@@ -5,13 +5,13 @@ import java.util.Objects;
 
 public class Boss extends Person {
     private int IDBoss;
-    private float wallet;
 
 
-    public Boss(String name, String email, String password, int IDBoss, float wallet) {
+
+    public Boss(String name, String email, String password, int IDBoss) {
         super(name, email, password);
         this.IDBoss = IDBoss;
-        this.wallet = wallet;
+
     }
 
     public Boss(String name, String email, String password) {
@@ -32,13 +32,7 @@ public class Boss extends Person {
         this.IDBoss = IDBoss;
     }
 
-    public float getWallet() {
-        return wallet;
-    }
 
-    public void setWallet(float wallet) {
-        this.wallet = wallet;
-    }
 
 
     @Override
@@ -60,7 +54,6 @@ public class Boss extends Person {
     public String toString() {
         return "Boss{" +
                 "IDBoss=" + IDBoss +
-                ", wallet=" + wallet +
                 '}';
     }
 }

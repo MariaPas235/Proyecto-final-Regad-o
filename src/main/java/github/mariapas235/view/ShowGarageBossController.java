@@ -34,10 +34,22 @@ public class ShowGarageBossController extends Controller implements Initializabl
     TableColumn<Garage, String> locationGarage;
 
     private ObservableList<Garage> garage;
+
+
+    /**
+     * Returns to the previous scene when the corresponding button is clicked.
+     */
     @FXML
     public void returnToButtons() {
         parent.changeScene(Scenes.BUTTONSINSERTTOOLSGARAGES);
     }
+
+    /**
+     * Called when the scene is opened. Retrieves all garage data from the database and populates the showGarages ListView
+     * with the data.
+     * @param input The input object, not used in this method.
+     * @throws IOException If an I/O error occurs.
+     */
     @Override
     public void onOpen(Object input) throws IOException {
         this.parent = (PrincipalPageBoss2Controller) input;
@@ -47,11 +59,21 @@ public class ShowGarageBossController extends Controller implements Initializabl
         showGarages.setItems(garage);
     }
 
+
+    /**
+     * Called when the scene is closed. Currently not implemented.
+     * @param output The output object, not used in this method.
+     */
     @Override
     public void onClose(Object output) {
 
     }
 
+    /**
+     * Initializes the controller. Configures the showGarages ListView to be editable and sets the cell value factories for the columns.
+     * @param url The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         showGarages.setEditable(true);
@@ -61,9 +83,6 @@ public class ShowGarageBossController extends Controller implements Initializabl
                 new SimpleIntegerProperty(garage.getValue().getGarageNumber()).asObject());
         locationGarage.setCellValueFactory(garage ->
                 new SimpleStringProperty(garage.getValue().getLocation()));
-
-
-
 
     }
 }

@@ -38,6 +38,12 @@ public class ShowToolsWorkerController extends Controller implements Initializab
 
     private ObservableList<Pieces> pieces;
 
+    /**
+     * Called when the scene is opened. Retrieves all tool data from the database and populates the showTools TableView
+     * with the data.
+     * @param input The input object containing the parent controller.
+     * @throws IOException If an I/O error occurs.
+     */
     @Override
     public void onOpen(Object input) throws IOException {
         this.parent = (PrincipalPageWorkerController) input;
@@ -48,12 +54,23 @@ public class ShowToolsWorkerController extends Controller implements Initializab
     }
 
 
-
+    /**
+     * Called when the scene is closed. Currently not implemented.
+     *
+     * @param output The output object, not used in this method.
+     */
     @Override
     public void onClose(Object output) {
 
     }
 
+    /**
+     * Initializes the controller. Sets the cell value factories for the columns in the showTools TableView and adds an
+     * event handler to insert a tool for hire when double-clicked.
+     *
+     * @param url  The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         nameTool.setCellValueFactory(piece ->
@@ -79,18 +96,6 @@ public class ShowToolsWorkerController extends Controller implements Initializab
                     String email = Session.getInstance().getUserLogged().getEmail();
                     WorkersDAO w = new WorkersDAO();
                     Workers worker = w.findByEmailAll(email);
-
-                    System.out.println("Find by ID worker");
-
-
-                    System.out.println( fhDAO.findByIDWorker(worker));
-
-
-                    System.out.println("Pieza axu:");
-                    System.out.println(axu);
-
-                    System.out.println("------------------------------------------------------------");
-                    System.out.println(fhDAO.findAll());
                 }
             }
         });

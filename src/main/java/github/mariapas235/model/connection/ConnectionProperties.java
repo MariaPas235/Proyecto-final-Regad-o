@@ -77,7 +77,11 @@ import java.io.Serializable;
                     ", password='" + password + '\'' +
                     '}';
         }
-
+        /**
+         * Constructs the JDBC URL for connecting to a MariaDB database.
+         * Combines the server, port, and database name into a single URL string.
+         * @return the constructed JDBC URL as a String
+         */
         public String getURL(){
             return "jdbc:mariadb://"+server+":"+port+"/"+database;
         }

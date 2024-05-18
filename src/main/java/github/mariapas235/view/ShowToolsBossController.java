@@ -38,11 +38,21 @@ public class ShowToolsBossController extends Controller implements Initializable
     private ObservableList<Pieces> pieces;
 
 
+    /**
+     * Returns to the previous scene when the corresponding button is clicked.
+     */
     @FXML
     public void returnToButtons() {
         parent.changeScene(Scenes.BUTTONSINSERTTOOLSGARAGES);
     }
 
+    /**
+     * Called when the scene is opened. Retrieves all tool data from the database and populates the showTools TableView
+     * with the data.
+     *
+     * @param input The input object, not used in this method.
+     * @throws IOException If an I/O error occurs.
+     */
     @Override
     public void onOpen(Object input) throws IOException {
         this.parent = (PrincipalPageBoss2Controller) input;
@@ -53,11 +63,22 @@ public class ShowToolsBossController extends Controller implements Initializable
     }
 
 
+    /**
+     * Called when the scene is closed. Currently not implemented.
+     *
+     * @param output The output object, not used in this method.
+     */
     @Override
     public void onClose(Object output) {
 
     }
 
+    /**
+     * Initializes the controller. Configures the showTools TableView to be editable and sets the cell value factories for the columns. Also, sets an event handler to delete a tool when double-clicked.
+     *
+     * @param url The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         showTools.setEditable(true);
@@ -83,10 +104,6 @@ public class ShowToolsBossController extends Controller implements Initializable
                     pDAO.delete(axu);
                     parent.changeScene(Scenes.SHOWTOOLSBOSS);
 
-
-                    System.out.println(axu);
-
-                    System.out.println("Pieza seleccionada: " + pieceSeleccionada.getName());
                 }
             }
         });

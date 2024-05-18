@@ -29,9 +29,10 @@ public class PrincipalPageBoss2Controller extends Controller implements Initiali
     @FXML
     Rectangle showGarages;
 
-
-
-
+    /**
+     * Handles the logout process.
+     * @throws IOException if an I/O error occurs.
+     */
     @FXML
     public void logOut() throws IOException {
         Session.getInstance().logOut();
@@ -41,11 +42,17 @@ public class PrincipalPageBoss2Controller extends Controller implements Initiali
     Controller currentController;
 
 
+    /**
+     * Writes the logged-in user's name to the text field.
+     */
     public void writeName(){
         textName.setText("Hola: "+ Session.getInstance().getUserLogged().getName());
     }
 
 
+    /**
+     * Writes the logged-in boss's ID to the text field.
+     */
     public void writeID(){
 
         String email = Session.getInstance().getUserLogged().getEmail();
@@ -58,17 +65,29 @@ public class PrincipalPageBoss2Controller extends Controller implements Initiali
     }
 
 
-
+    /**
+     * Called when the controller is opened.
+     * @param input the input data (not used in this method).
+     * @throws IOException if an I/O error occurs.
+     */
     @Override
     public void onOpen(Object input) throws IOException {
         
     }
 
+    /**
+     * Called when the controller is closed.
+     * @param output the output data (not used in this method).
+     */
     @Override
     public void onClose(Object output) {
 
     }
 
+    /**
+     * Changes the scene to the specified scene.
+     * @param scene the scene to change to.
+     */
     public void changeScene(Scenes scene){
         try {
             View view = AppController.loadFXML(scene);
@@ -83,15 +102,30 @@ public class PrincipalPageBoss2Controller extends Controller implements Initiali
         }
     }
 
+
+    /**
+     * Changes the scene to show the tools for the boss.
+     * @throws IOException if an I/O error occurs.
+     */
     @FXML
     public void changeToShowTools() throws IOException {
         changeScene(Scenes.SHOWTOOLSBOSS);
     }
+
+    /**
+     * Changes the scene to show the garage for the boss.
+     * @throws IOException if an I/O error occurs.
+     */
     @FXML
     public void changeToShowGarage() throws IOException {
         changeScene(Scenes.SHOWGARAGEBOSS);
     }
 
+    /**
+     * Initializes the controller.
+     * @param url the location relative to the root of the FXML document being loaded.
+     * @param resourceBundle the resources that may be needed to initialize the controller.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         writeName();

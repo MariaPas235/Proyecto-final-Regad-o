@@ -30,6 +30,13 @@ public class ShorForHireWorkerController extends Controller implements Initializ
     @FXML
     TableColumn <ForHire,String> showBack;
 
+    /**
+     * Method called when the scene is opened. Retrieves the list of ForHire objects associated with the logged-in worker
+     * and populates the showForHire ListView with the data.
+     *
+     * @param input The input object, not used in this method.
+     * @throws IOException If an I/O error occurs.
+     */
     @Override
     public void onOpen(Object input) throws IOException {
         PiecesDAO.ForHireDAO fhDAO = new PiecesDAO.ForHireDAO();
@@ -40,11 +47,20 @@ public class ShorForHireWorkerController extends Controller implements Initializ
         showForHire.setItems(forHireObservableList);
     }
 
+    /**
+     * Method called when the scene is closed. Currently not implemented.
+     * @param output The output object, not used in this method.
+     */
     @Override
     public void onClose(Object output) {
 
     }
 
+    /**
+     * Initializes the controller. Configures the showForHire ListView to be editable and sets the cell value factories for the columns.
+     * @param url The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         showForHire.setEditable(true);

@@ -22,6 +22,11 @@ public class WorkersDAO implements DAO<Workers,String,Integer>{
     private final static String DELETE = "DELETE FROM worker AS w WHERE w.IDWorker=?";
   //  private final static String
 
+    /**
+     * Inserts a new Workers entity into the database.
+     * @param entity the Workers entity to insert
+     * @return the inserted Workers entity
+     */
     @Override
     public Workers insert(Workers entity) {
         Workers result = new Workers();
@@ -40,6 +45,11 @@ public class WorkersDAO implements DAO<Workers,String,Integer>{
         return result;
     }
 
+    /**
+     * Updates an existing Workers entity in the database.
+     * @param entity the Workers entity to update
+     * @return the updated Workers entity
+     */
     @Override
     public Workers update(Workers entity) {
         Workers result = entity;
@@ -54,6 +64,11 @@ public class WorkersDAO implements DAO<Workers,String,Integer>{
         return result;
     }
 
+    /**
+     * Deletes a Workers entity from the database.
+     * @param entity the Workers entity to delete
+     * @return the deleted Workers entity
+     */
     @Override
     public Workers delete(Workers entity) {
         if (entity != null || entity.getIDWorker()<0){
@@ -69,6 +84,11 @@ public class WorkersDAO implements DAO<Workers,String,Integer>{
         return entity;
     }
 
+    /**
+     * Finds a Workers entity by its ID.
+     * @param key the ID of the Workers entity to find
+     * @return the found Workers entity
+     */
     @Override
     public Workers findById(Integer key) {
         Workers result = new Workers();
@@ -92,6 +112,12 @@ public class WorkersDAO implements DAO<Workers,String,Integer>{
         }
         return result;
     }
+
+    /**
+     * Verifies a Workers entity by its email.
+     * @param key the email of the Workers entity to verify
+     * @return the verified Workers entity
+     */
     public Workers verify(String key)     {
         Workers result = new Workers();
         if (key!= null) {
@@ -110,6 +136,12 @@ public class WorkersDAO implements DAO<Workers,String,Integer>{
         }
         return result;
     }
+
+    /**
+     * Finds a Workers entity by its email, including all details.
+     * @param key the email of the Workers entity to find
+     * @return the found Workers entity with all details
+     */
     public Workers findByEmailAll(String key) {
         Workers result = new Workers();
         if (key!=null) {
@@ -134,6 +166,10 @@ public class WorkersDAO implements DAO<Workers,String,Integer>{
         return result;
     }
 
+    /**
+     * Finds all Workers entities in the database.
+     * @return a list of all Workers entities
+     */
     @Override
     public List<Workers> findAll() {
         List<Workers> result = new ArrayList<>();
@@ -154,32 +190,12 @@ public class WorkersDAO implements DAO<Workers,String,Integer>{
         return result;
     }
 
+    /**
+     * Closes the resources, currently does nothing.
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     public void close() throws IOException {
 
     }
-}
-class WorkersLazy extends Workers{
-
-
-    public List<ForHire> getForHire() {
-        Workers w = (Workers) Session.getInstance().getUserLogged();
-
-        if (super.getForHireList() == null) {
-            try {
-                // Obtener la lista de 'ForHire' desde la base de datos usando el objeto Workers
-                List<ForHire> forHireList = (List<ForHire>) PiecesDAO.ForHireDAO.build().findByIDWorker(w);
-                setForHireList(forHireList);
-            } catch (Exception e) {
-                // Manejar la excepción (log, rethrow, etc.)
-                e.printStackTrace();
-                return Collections.emptyList(); // O manejar según la lógica de la aplicación
-            }
-        }
-
-        return super.getForHireList();
-    }
-
-
-
 }

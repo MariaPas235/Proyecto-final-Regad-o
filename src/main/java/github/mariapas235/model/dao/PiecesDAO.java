@@ -22,6 +22,12 @@ public class PiecesDAO implements DAO<Pieces, String, Integer> {
     private final static String DELETE = "DELETE FROM pieces WHERE IDPieces=?";
 
 
+    /**
+     * Inserts a new Pieces entity into the database.
+     *
+     * @param entity the Pieces entity to insert
+     * @return the inserted Pieces entity
+     */
     @Override
     public Pieces insert(Pieces entity) {
 
@@ -44,6 +50,12 @@ public class PiecesDAO implements DAO<Pieces, String, Integer> {
         return result;
     }
 
+    /**
+     * Updates an existing Pieces entity in the database.
+     *
+     * @param entity the Pieces entity to update
+     * @return the updated Pieces entity
+     */
     @Override
     public Pieces update(Pieces entity) {
         Pieces result = entity;
@@ -59,6 +71,12 @@ public class PiecesDAO implements DAO<Pieces, String, Integer> {
         return result;
     }
 
+    /**
+     * Deletes an existing Pieces entity from the database.
+     *
+     * @param entity the Pieces entity to delete
+     * @return the deleted Pieces entity
+     */
     @Override
     public Pieces delete(Pieces entity) {
         if (entity != null || entity.getIDPieces() < 0) {
@@ -74,10 +92,12 @@ public class PiecesDAO implements DAO<Pieces, String, Integer> {
         return entity;
     }
 
-    public static Pieces findByIds(Integer key) {
-        return null;
-    }
-
+    /**
+     * Finds a Pieces entity by its ID.
+     *
+     * @param key the ID of the Pieces entity to find
+     * @return the found Pieces entity
+     */
     public Pieces findById(Integer key) {
         Pieces result = null;
         if (key != null) {
@@ -110,6 +130,12 @@ public class PiecesDAO implements DAO<Pieces, String, Integer> {
 
     }
 
+    /**
+     * Finds a Pieces entity by its name.
+     *
+     * @param key the name of the Pieces entity to find
+     * @return the found Pieces entity
+     */
     public Pieces findByName(String key) {
         Pieces result = null;
         if (key != null) {
@@ -141,6 +167,11 @@ public class PiecesDAO implements DAO<Pieces, String, Integer> {
         return result;
     }
 
+    /**
+     * Finds all Pieces entities in the database.
+     *
+     * @return a list of all Pieces entities
+     */
     @Override
     public List<Pieces> findAll() {
         List<Pieces> result = new ArrayList<>();
@@ -167,6 +198,11 @@ public class PiecesDAO implements DAO<Pieces, String, Integer> {
         return result;
     }
 
+    /**
+     * Closes the resources, currently does nothing.
+     *
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     public void close() throws IOException {
 
@@ -179,6 +215,12 @@ public class PiecesDAO implements DAO<Pieces, String, Integer> {
         private final static String FINDALL = "SELECT fh.IDPieces, fh.IDWorker,fh.take,fh.back FROM ForHire AS fh";
 
 
+        /**
+         * Inserts a new ForHire entity into the database.
+         * @param entity the Pieces entity associated with the ForHire entity
+         * @param entityForHire the ForHire entity to insert
+         * @return the inserted ForHire entity
+         */
         public ForHire insert(Pieces entity, ForHire entityForHire) {
 
             ForHire result2 = entityForHire;
@@ -205,34 +247,11 @@ public class PiecesDAO implements DAO<Pieces, String, Integer> {
         }
 
 
-        public ForHire findByIDWorker(Workers key) {
-            ForHire result = null;
-            if (key != null) {
-
-                try (PreparedStatement pst = ConnectionMariaDB.getConnection().prepareStatement(FINDBYIDWORKER)) {
-
-                    pst.setInt(1, key.getIDWorker());
-                    ResultSet res = pst.executeQuery();
-                    if (res.next()) {
-
-                        result = new ForHire();
-                        PiecesDAO pDAO = new PiecesDAO();
-                        result.setPieces(pDAO.findById(res.getInt("IDPieces")));
-                        result.setTake(res.getString("take"));
-                        result.setBack(res.getString("back"));
-                        result.setWorkers((Workers) Session.getInstance().getUserLogged());
-
-
-                    }
-
-                    res.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            return result;
-        }
-
+        /**
+         * Finds all ForHire entities by the ID of the worker.
+         * @param key the Workers entity with the ID to find the ForHire entities
+         * @return a list of ForHire entities associated with the worker
+         */
         public List<ForHire> findAllByIDWorker(Workers key) {
             List<ForHire> forhireList = new ArrayList<>();
             if (key != null && key.getIDWorker() > 0) {
@@ -263,38 +282,36 @@ public class PiecesDAO implements DAO<Pieces, String, Integer> {
         }
 
 
+        /**
+         * Finds all ForHire entities in the database.
+         * @return a list of all ForHire entities
+         */
+        public List<ForHire> findAll() {
+            List<ForHire> result = new ArrayList<>();
 
-public List<ForHire> findAll() {
-    List<ForHire> result = new ArrayList<>();
+            try (PreparedStatement pst = ConnectionMariaDB.getConnection().prepareStatement(FINDALL)) {
 
-    try (PreparedStatement pst = ConnectionMariaDB.getConnection().prepareStatement(FINDALL)) {
+                ResultSet res = pst.executeQuery();
+                while (res.next()) {
+                    ForHire fh = new ForHire();
 
-        ResultSet res = pst.executeQuery();
-        while (res.next()) {
-            ForHire fh = new ForHire();
+                    PiecesDAO pDAO = new PiecesDAO();
+                    fh.setPieces(pDAO.findById(res.getInt("IDPieces")));
+                    WorkersDAO wDAO = new WorkersDAO();
+                    fh.setWorkers(wDAO.findById(res.getInt("IDWorker")));
+                    fh.setTake(res.getString("take"));
+                    fh.setBack(res.getString("back"));
 
-            PiecesDAO pDAO = new PiecesDAO();
-            fh.setPieces(pDAO.findById(res.getInt("IDPieces")));
-            WorkersDAO wDAO = new WorkersDAO();
-            fh.setWorkers(wDAO.findById(res.getInt("IDWorker")));
-            fh.setTake(res.getString("take"));
-            fh.setBack(res.getString("back"));
-
-            result.add(fh);
-        }
-        res.close();
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-
-    return result;
-}
-
-public static ForHireDAO build() {
-    return new ForHireDAO();
-}
-
-    }
-
-
+                    result.add(fh);
+                }
+                res.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
+
+            return result;
+        }
+
+
+    }
+}

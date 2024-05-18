@@ -35,6 +35,13 @@ public class InsertToolFormController extends Controller implements Initializabl
     ComboBox<String> comboBoxCategory;
     PrincipalPageBoss2Controller parent;
 
+
+    /**
+     * Collects data from the input fields to create a new Pieces object.
+     * Checks if a piece with the same name, category, and prize exists in the database.
+     * If not, inserts a new piece. If yes, updates the quantity of the existing piece.
+     * @return the Pieces object created or updated
+     */
     public Pieces CollectDataTool() {
         String selectedCategoryString = comboBoxCategory.getSelectionModel().getSelectedItem();
         Category selectedCategory = Category.valueOf(selectedCategoryString.toString().toUpperCase());
@@ -46,8 +53,6 @@ public class InsertToolFormController extends Controller implements Initializabl
         float prizeFloat = Float.parseFloat(prize);
         int garageNumberInt = Integer.parseInt(GarageNumber);
 
-
-        //buscar en la base de datos un garage que exista con ese GarageNumber, si es true, crea la pieza y la guarda en el array de ese garage
         GarageDAO g = new GarageDAO();
         Garage garageDataBase = g.findById(garageNumberInt);
 
@@ -60,18 +65,19 @@ public class InsertToolFormController extends Controller implements Initializabl
 
 
         if (garageDataBase.getGarageNumber() == garageNumberInt) {
-            //busco piezaq por nombre y me la traigo, comparo esa pieza con la nueva y si la categoria y el precio son iguales, suma cantidad4
+
 
             PiecesDAO pDAO = new PiecesDAO();
             Pieces pieceDatabase = pDAO.findByName(name);
             if (pieceDatabase == null) {
                 p = new Pieces(name, selectedCategory, prizeFloat, quantityInt, garageDataBase, boss);
                 pDAO.insert(p);
-                AppController.alertEmptyEmail();
+                AppController.alertWarning("La nueva pieza ha sido insertada correctamente.");
             } else if (pieceDatabase.getName().equals(name) && pieceDatabase.getCategory().equals(selectedCategory) && pieceDatabase.getPrize() == prizeFloat) {
                 pieceDatabase.setQuantity(pieceDatabase.getQuantity() + quantityInt);
                 pDAO.update(pieceDatabase);
                 p = pieceDatabase;
+                AppController.alertWarning("Ya se ha encontrado una pieza igual en la base de datos, por tanto se ha incrementado la cantidad.");
             }
 
             }
@@ -79,22 +85,44 @@ public class InsertToolFormController extends Controller implements Initializabl
         }
 
 
+    /**
+     * Switches the scene to the buttons insert tools/garages scene in the parent controller.
+     * Called when the return to buttons button is clicked in the UI.
+     */
         @FXML
         public void ReturnToButtons () {
             parent.changeScene(Scenes.BUTTONSINSERTTOOLSGARAGES);
         }
 
 
+    /**
+     * Called when the controller is opened.
+     * Initializes the reference to the parent controller.
+     * @param input the parent controller passed as input
+     * @throws IOException if an I/O error occurs
+     */
         @Override
         public void onOpen (Object input) throws IOException {
             this.parent = (PrincipalPageBoss2Controller) input;
         }
 
+
+    /**
+     * Called when the controller is closed.
+     * Currently, no action is performed when the controller is closed.
+     * @param output the output data (not used in this method)
+     */
         @Override
         public void onClose (Object output){
 
         }
 
+    /**
+     * Initializes the controller.
+     * Sets the items in the combo box for selecting the category.
+     * @param url the location relative to the root of the FXML document being loaded
+     * @param resourceBundle the resources that may be needed to initialize the controller (not used in this method)
+     */
         @Override
         public void initialize (URL url, ResourceBundle resourceBundle){
             comboBoxCategory.setItems(FXCollections.observableArrayList("HERRAMIENTAS_ELECTRICAS", "HERRAMIENTAS_MANUALES", "FERRETERIA"));

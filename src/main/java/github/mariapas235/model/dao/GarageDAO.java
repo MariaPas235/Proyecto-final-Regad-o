@@ -19,6 +19,11 @@ public class GarageDAO implements DAO<Garage,String,Integer> {
     private final static String FINDBYID = "SELECT g.garageNumber, g.name, g.location FROM garage AS g WHERE g.garageNumber=?";
     private final static String DELETE = "DELETE FROM garage AS g WHERE g.garageNumber=?";
 
+    /**
+     * Inserts a new Garage entity into the database.
+     * @param entity the Garage entity to insert
+     * @return the inserted Garage entity
+     */
     @Override
     public Garage insert(Garage entity) {
         Garage result = entity;
@@ -36,6 +41,11 @@ public class GarageDAO implements DAO<Garage,String,Integer> {
         return result;
     }
 
+    /**
+     * Updates an existing Garage entity in the database.
+     * @param entity the Garage entity to update
+     * @return the updated Garage entity
+     */
     @Override
     public Garage update(Garage entity) {
         Garage result = entity;
@@ -50,6 +60,11 @@ public class GarageDAO implements DAO<Garage,String,Integer> {
         return result;
     }
 
+    /**
+     * Deletes an existing Garage entity from the database.
+     * @param entity the Garage entity to delete
+     * @return the deleted Garage entity
+     */
     @Override
     public Garage delete(Garage entity) {
         if (entity != null || entity.getGarageNumber()<0){
@@ -64,6 +79,13 @@ public class GarageDAO implements DAO<Garage,String,Integer> {
         }
         return entity;
     }
+
+
+    /**
+     * Finds a Garage entity by its ID.
+     * @param key the ID of the Garage entity to find
+     * @return the found Garage entity
+     */
 
     @Override
     public Garage findById(Integer key) {
@@ -86,6 +108,10 @@ public class GarageDAO implements DAO<Garage,String,Integer> {
         return result;
     }
 
+    /**
+     * Finds all Garage entities in the database.
+     * @return a list of all Garage entities
+     */
     @Override
     public List<Garage> findAll() {
         List<Garage> result = new ArrayList<>();
@@ -106,7 +132,10 @@ public class GarageDAO implements DAO<Garage,String,Integer> {
 
         return result;
     }
-
+    /**
+     * Closes the resources, currently does nothing.
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     public void close() throws IOException {
 

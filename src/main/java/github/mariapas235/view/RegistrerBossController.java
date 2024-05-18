@@ -26,13 +26,17 @@ public class RegistrerBossController extends Controller implements Initializable
     Button ButtonRegistrerBoss;
 
 
+    /**
+     * Collects data from the input fields to create a Boss object.
+     * @return a Boss object with the data from the input fields.
+     */
     @FXML
     public Boss CollectDataBoss() {
         String email = TextFieldEmailBoss.getText();
         String password = TextFieldPasswordBoss.getText();
         Boss b = null;
         if (!Person.validarContrasena(password)) {
-            AppController.alertErrorPassword();
+            AppController.alertError("La contraseña no cumple con los requisitos citados abajo, por favor cree una nueva");
 
 
         }else {
@@ -44,6 +48,10 @@ public class RegistrerBossController extends Controller implements Initializable
 
     }
 
+    /**
+     * Handles the registration and insertion of a new Boss.
+     * @throws IOException if an I/O error occurs.
+     */
     @FXML
     public void InsertRegistrerBoss() throws IOException {
 
@@ -51,11 +59,11 @@ public class RegistrerBossController extends Controller implements Initializable
         BossDAO bDAO = new BossDAO();
 
         if (b.getName() == null || b.getName().isEmpty()) {
-            AppController.alertEmptyName();
+            AppController.alertWarning("El campo nombre se encuentra vacío, por favor rellénelo");
         } else if (b.getEmail() == null || b.getEmail().isEmpty()) {
-            AppController.alertEmptyEmail();
+            AppController.alertWarning("El campo email se encuentra vacío, por favor rellénelo");
         } else if (b.getPassword() == null || b.getPassword().isEmpty()) {
-            AppController.alertEmptyPassword();
+            AppController.alertWarning("El campo contraseña se encuentra vacío, por favor rellénelo");
         } else if (Person.validarCorreo(b.getEmail())) {
                 bDAO.insert(b);
                 b.setIDBoss( bDAO.findByEmailAll(b.getEmail()).getIDBoss());
@@ -63,20 +71,34 @@ public class RegistrerBossController extends Controller implements Initializable
                 System.out.println(Session.getInstance().getUserLogged());
                 App.currentController.changeScene(Scenes.LOGINBOSS, null);
         } else {
-            AppController.alertErrorEmail();
+            AppController.alertError("El email no es correcto, escríbalo correctamente");
         }
     }
 
+    /**
+     * Method to handle actions when the scene is opened.
+     * @param input the input object for the scene.
+     * @throws IOException if an I/O error occurs.
+     */
     @Override
     public void onOpen(Object input) throws IOException {
 
     }
 
+    /**
+     * Method to handle actions when the scene is closed.
+     * @param output the output object for the scene.
+     */
     @Override
     public void onClose(Object output) {
 
     }
 
+    /**
+     * Method to initialize the controller.
+     * @param url the location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle the resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
