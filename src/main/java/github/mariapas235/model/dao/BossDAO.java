@@ -16,7 +16,7 @@ public class BossDAO implements DAO<Boss,String, Integer>{
     private final static String UPDATE="UPDATE boss SET wallet=? WHERE email=?)";
     private final static String FINDALL = "SELECT b.IDBoss, b.name FROM boss AS b";
     private final static String FINDBYEMAIL = "SELECT b.email, b.password FROM boss AS b WHERE b.email=?";
-    private final static String FINDBYEMAILALL= "SELECT b.name, b.email, b.password,b.IDBoss, b.wallet FROM boss AS b WHERE b.email=?";
+    private final static String FINDBYEMAILALL= "SELECT b.name, b.email, b.password,b.IDBoss FROM boss AS b WHERE b.email=?";
     private final static String FINDBYID = "SELECT b.IDBoss, b.name FROM boss AS b WHERE b.IDBoss=?";
     private final static String DELETE = "DELETE FROM boos AS b WHERE b.IDBoss=?";
 
@@ -53,7 +53,7 @@ public class BossDAO implements DAO<Boss,String, Integer>{
         Boss result = entity;
         if(entity !=null || entity.getIDBoss()>0){
             try(PreparedStatement pst = ConnectionMariaDB.getConnection().prepareStatement(UPDATE)) {
-                pst.setFloat(1,entity.getWallet());
+                //pst.setFloat(1,entity.getWallet());
                 pst.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -148,7 +148,7 @@ public class BossDAO implements DAO<Boss,String, Integer>{
                     result.setEmail(res.getString("email"));
                     result.setPassword(res.getString("password"));
                     result.setIDBoss(res.getInt("IDBoss"));
-                    result.setWallet(res.getFloat("wallet"));                }
+                }
                 res.close();
             } catch (SQLException e) {
                 e.printStackTrace();

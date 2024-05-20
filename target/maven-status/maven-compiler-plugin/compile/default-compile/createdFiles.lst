@@ -1,0 +1,13 @@
+github\mariapas235\model\entity\Person.class
+github\mariapas235\model\dao\DAO.class
+github\mariapas235\model\entity\Boss.class
+github\mariapas235\model\entity\Workers.class
+github\mariapas235\model\dao\BossDAO.class
+github\mariapas235\model\dao\GarageDAO.class
+github\mariapas235\model\dao\WorkersDAO.class
+github\mariapas235\model\entity\Category.class
+github\mariapas235\model\entity\ForHire.class
+github\mariapas235\model\entity\Pieces.class
+github\mariapas235\model\entity\Position.class
+github\mariapas235\model\connection\Executable.class
+github\mariapas235\model\entity\Garage.class

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.mariapas235.view.PrincipalPageBoss2Controller">
+   <children>
+      <AnchorPane prefHeight="236.0" prefWidth="1920.0" style="-fx-background-color: #071635;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="606.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Avatar.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="textName" fill="#fea500" layoutX="890.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="889.6922607421875">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Text>
+            <Text fx:id="textID" fill="#fea500" layoutX="890.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="293.33331298828125">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <HBox prefHeight="848.0" prefWidth="1920.0">
+         <children>
+            <VBox prefHeight="846.0" prefWidth="495.0" style="-fx-background-color: #fea500;">
+               <children>
+                  <AnchorPane prefHeight="853.0" prefWidth="495.0">
+                     <children>
+                        <Rectangle fx:id="showTools" arcHeight="5.0" arcWidth="5.0" fill="#fea500" height="287.0" layoutX="-16.0" layoutY="1.0" onMouseClicked="#changeToShowTools" stroke="BLACK" strokeType="INSIDE" width="510.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Rectangle>
+                        <Rectangle fx:id="showGarages" arcHeight="5.0" arcWidth="5.0" fill="#fea500" height="281.0" layoutX="-2.0" layoutY="289.0" onMouseClicked="#changeToShowGarage" stroke="BLACK" strokeType="INSIDE" width="496.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Rectangle>
+                        <Rectangle fx:id="logOut" arcHeight="5.0" arcWidth="5.0" fill="#fea500" height="281.0" layoutY="571.0" onMouseClicked="#logOut" stroke="BLACK" strokeType="INSIDE" width="496.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Rectangle>
+                        <Text fill="#071635" layoutX="179.0" layoutY="107.0" onMouseClicked="#changeToShowTools" strokeType="OUTSIDE" strokeWidth="0.0" text="Herramientas" wrappingWidth="259.857421875">
+                           <font>
+                              <Font size="40.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Text>
+                        <Text fill="#071635" layoutX="210.0" layoutY="382.0" onMouseClicked="#changeToShowGarage" strokeType="OUTSIDE" strokeWidth="0.0" text="Garages">
+                           <font>
+                              <Font size="42.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Text>
+                        <Text fill="#071635" layoutX="217.0" layoutY="719.0" onMouseClicked="#logOut" strokeType="OUTSIDE" strokeWidth="0.0" text="Salir">
+                           <font>
+                              <Font size="42.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Text>
+                        <ImageView fitHeight="56.0" fitWidth="66.0" layoutX="333.0" layoutY="674.0" onMouseClicked="#logOut" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@logoutUser.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fitHeight="87.0" fitWidth="103.0" layoutX="242.0" layoutY="426.0" onMouseClicked="#changeToShowGarage" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@garage.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fitHeight="87.0" fitWidth="89.0" layoutX="242.0" layoutY="145.0" onMouseClicked="#changeToShowTools" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@tool.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <AnchorPane fx:id="anchorPaneChangeScene" prefHeight="852.0" prefWidth="1428.0" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
