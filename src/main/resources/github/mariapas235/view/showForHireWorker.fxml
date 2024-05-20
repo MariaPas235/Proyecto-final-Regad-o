@@ -6,7 +6,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.mariapas235.view.ShorForHireWorkerController">
    <children>
-      <TableView fx:id="showForHire" layoutX="258.0" layoutY="157.0" prefHeight="467.0" prefWidth="718.0">
+      <TableView fx:id="showForHire" layoutX="152.0" layoutY="175.0" prefHeight="519.0" prefWidth="720.0">
         <columns>
           <TableColumn fx:id="showNamePiece" prefWidth="403.55560302734375" text="Nombre" />
           <TableColumn fx:id="showTake" prefWidth="168.88897705078125" text="Fecha recogida" />

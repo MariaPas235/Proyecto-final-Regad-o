@@ -93,6 +93,7 @@ public class ShowToolsWorkerController extends Controller implements Initializab
                     PiecesDAO.ForHireDAO fhDAO = new PiecesDAO.ForHireDAO();
                     ForHire fh = new ForHire();
                     fhDAO.insert(axu,fh);
+                    AppController.alertWarning("Se ha creado un nuevo préstamo, ya puede consultarlo en la pestaña de Préstamos");
                     String email = Session.getInstance().getUserLogged().getEmail();
                     WorkersDAO w = new WorkersDAO();
                     Workers worker = w.findByEmailAll(email);

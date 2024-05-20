@@ -102,6 +102,7 @@ public class ShowToolsBossController extends Controller implements Initializable
                     PiecesDAO pDAO = new PiecesDAO();
                     Pieces axu=pDAO.findByName(pieces.getName());
                     pDAO.delete(axu);
+                    AppController.alertWarning("La pieza ha sido eliminada con éxito");
                     parent.changeScene(Scenes.SHOWTOOLSBOSS);
 
                 }
